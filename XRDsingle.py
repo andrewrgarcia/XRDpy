@@ -14,6 +14,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 
+
+
 def bacsub(xdata,ydata,tol=1):
     'approx. # points for half width of peaks'
     L=len(ydata)
@@ -33,23 +35,34 @@ def data():
     '''put .csv file in python directory 
     replace "sample.csv" with name of .csv file to be analyzed below '''
     
-    with open("sample.csv", 'r') as f:
+    with open("[insertcsvfilenamehere].csv", 'r') as f:
         X = list(csv.reader(f, delimiter=","))        
     Xc=np.array(X[1:], dtype=np.float)        
 
     return Xc, np.shape(Xc)
 
-#y,x = data()[1]
-#xi, yi, ybi = np.zeros((3,x,y))
+
 xi=data()[0][:,0]
 yi=data()[0][:,1]
 ybi=bacsub(xi,yi,tol=1)
-plt.plot(xi,yi,color='darkorange')
-plt.xlabel(r'$2\theta$ / deg')
-plt.ylabel('Intensity / a.u.')
-
 plt.figure()
-plt.plot(xi,ybi,color='navy')
-plt.title('(background subtracted)')
+plt.plot(xi,yi,color='darkorange',label='not treated')
+plt.plot(xi,ybi,color='navy',label='subtracted background')
+plt.title('')
 plt.xlabel(r'$2\theta$ / deg')
 plt.ylabel('Intensity / a.u.')
+plt.legend(loc='best')
+
+
+import xlwings as xw
+
+def excel(x,y):
+    wb=xw.Book()
+    xw.Range((1,1)).options(transpose=True).value=x
+    xw.Range((1,2)).options(transpose=True).value=y
+
+excel(xi,ybi)
+    
+    
+    
+
