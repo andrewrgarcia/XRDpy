@@ -64,7 +64,7 @@ def bacsub(xdata,ydata,tol=1):
     
     return newdat
 
-def movnavg(xdata,ydata,n=2):
+def movnavg(xdata,ydata,n=1):
     
     L=int(len(xdata)//n)
     newy=np.zeros(L)
@@ -86,24 +86,23 @@ def movnavg(xdata,ydata,n=2):
         
     return newx,newy
                     
-def data(M=11):
+def data():
     
-    X = [[]]*M
     filename=["dstape_perm.csv","dstape_rmvl.csv","MIL53-adv-001.csv","MIL53-adv-006.csv","MIL53-adv-008.csv",
               "MIL53-adv-010.csv","MIL53-adv-011.csv","MIL53-adv-013.csv","MIL002-C-5umf-C.csv","MIL003-C-5umf-C.csv",
               "MIL004-C-5umf-C.csv","mil53ht_pwc.csv"]
+    
+    M=len(filename)
+    X = [[]]*M
 
     for i in range(M):
         with open(filename[i], 'r') as f:
             X[i] = list(csv.reader(f, delimiter=","))
-    
         
     for i in range(M):
             X[i] = np.array(X[i][1:], dtype=np.float)
 
-    x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11 = X
-        
-    return x1,x2,x3,x4,x5,x6,x7,x8,x9,x10,x11
+    return X
 
 
 labels=['3M double-sided tape (Permanent)','3M double-sided tape (Removable)',
