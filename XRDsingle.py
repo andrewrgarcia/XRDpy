@@ -5,10 +5,6 @@ Created on Wed Mar 21 21:00:03 2018
 @author: garci
 """
 
-'''Background subtraction and plotting algorithms for XRD files in .csv format
-Developer: Andrew
-'''
-
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
