@@ -145,7 +145,7 @@ for i in range(0,3):
     print(labels[i])
     locmax(rx,ryb)
     
-print('\n*The Scherrer equation is limited to nano-scale particles. It is not applicable to grains larger than about 0.1 to 0.2 μm')
+print('\n*Crystallite size calculated using Scherrer equation.')
     
 axarr[1].set_ylim([-1000, 20000])
 
