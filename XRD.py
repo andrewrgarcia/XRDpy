@@ -90,7 +90,7 @@ def data():
     
     filename=["dstape_perm.csv","dstape_rmvl.csv","MIL53-adv-001.csv","MIL53-adv-006.csv","MIL53-adv-008.csv",
               "MIL53-adv-010.csv","MIL53-adv-011.csv","MIL53-adv-013.csv","MIL002-C-5umf-C.csv","MIL003-C-5umf-C.csv",
-              "MIL004-C-5umf-C.csv","mil53ht_pwc.csv"]
+              "MIL004-C-5umf-C.csv","MIL53-adv-016.csv","MIL53-adv-016_hires.csv","MIL53-adv-017.csv", "mil53ht_pwc.csv"]
     
     M=len(filename)
     X = [[]]*M
@@ -107,7 +107,7 @@ def data():
 
 labels=['3M double-sided tape (Permanent)','3M double-sided tape (Removable)',
         'MIL 1','MIL 6','MIL 8','MIL 10','MIL 11',
-        'MIL 13','MIL 2 C5umfC','MIL 3 C5umfC','MIL 4 C5umfC','mil53ht (simulation)']
+        'MIL 13','MIL 2 C5umfC','MIL 3 C5umfC','MIL 4 C5umfC','MIL 16', 'MIL 16 (hi-res)','MIL 17', 'MIL (simulation)']
 
 
 f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
@@ -115,7 +115,10 @@ f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]
 
 
 
-for i in range(2,11):
+for i in range(2,14):
+    
+    #only plot data w/ following indices
+    if i ==2 or i==11 or i==12 or i ==13:
         
         ydat,xdat = np.shape(data()[i])
         x, y, yb = np.zeros((3,ydat))
