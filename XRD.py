@@ -64,7 +64,7 @@ def bacsub(xdata,ydata,tol=1):
     
     return newdat
 
-def movnavg(xdata,ydata,n=3):
+def movnavg(xdata,ydata,n=1):
     
     L=int(len(xdata)//n)
     newy=np.zeros(L)
