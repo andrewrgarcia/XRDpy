@@ -31,11 +31,7 @@ def data():
     '''put .csv file in python directory 
     replace "sample.csv" with name of .csv file to be analyzed below '''
     
-#    with open("[insertcsvfilenamehere].csv", 'r') as f:
-#    with open("dstape_p_061418.csv", 'r') as f:
-#    with open("Dixon-cystinebulk_061418.csv", 'r') as f:
-    with open("MIL53-adv-001.csv", 'r') as f:
-
+    with open("[insertcsvfilenamehere].csv", 'r') as f:
 
 
         X = list(csv.reader(f, delimiter=","))        
