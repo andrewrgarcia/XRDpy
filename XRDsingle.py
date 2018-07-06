@@ -31,7 +31,13 @@ def data():
     '''put .csv file in python directory 
     replace "sample.csv" with name of .csv file to be analyzed below '''
     
-    with open("[insertcsvfilenamehere].csv", 'r') as f:
+#    with open("[insertcsvfilenamehere].csv", 'r') as f:
+#    with open("dstape_p_061418.csv", 'r') as f:
+#    with open("Dixon-cystinebulk_061418.csv", 'r') as f:
+    with open("MIL53-adv-001.csv", 'r') as f:
+
+
+
         X = list(csv.reader(f, delimiter=","))        
     Xc=np.array(X[1:], dtype=np.float)        
 
@@ -44,6 +50,8 @@ ybi=bacsub(xi,yi,tol=1)
 plt.figure()
 plt.plot(xi,yi,color='darkorange',label='not treated')
 plt.plot(xi,ybi,color='navy',label='subtracted background')
+#plt.plot(xi,ybi,color='red')
+
 plt.title('')
 plt.xlabel(r'$2\theta$ / deg')
 plt.ylabel('Intensity / a.u.')
