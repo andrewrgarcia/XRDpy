@@ -51,7 +51,6 @@ def index_search(twotheta,tol,args=()):
             count=0
         else:
             h,k,l=randint(0,5,(3))
-#            hs,ks,ls=h**2,k**2,l**2
 
 #            ds_diff= recip_ds - intspace_orthorhombic(h,k,l,*args)
             ds_diff= recip_ds - intspace_hexagonal(h,k,l,*args)
@@ -71,7 +70,6 @@ def index_search(twotheta,tol,args=()):
 twotheta=11.3
 a = 3.113
 c = 15.61
-
 
 
 ix=index_search(twotheta,tol=1e-4,args=(a,c))
