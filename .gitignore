@@ -1,4 +1,5 @@
-lattice_params.py
+mof_lattice_params.py
+results_mof-peak_index.txt
 
 # XRD .csv files
 *.csv

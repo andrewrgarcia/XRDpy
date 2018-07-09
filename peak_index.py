@@ -9,7 +9,7 @@ given the known a b c lattice parameters of the crystal studied'''
 
 import numpy as np
 import math
-import lattice_params as mof
+import mof_lattice_params as mof
 
 def braggslaw(twotheta,n):
 
@@ -35,7 +35,7 @@ def intspace_hexagonal(h,k,l,a,c):
     '1/d_hkl^2 = '
     return ((4/3)*(h**2 + h*k + k**2)/a**2) + (l**2/c**2)
 
-def index_search(twotheta,tol,args=()):
+def index_search(intspace_type,twotheta,tol,args=()):
 
     n=1
     ds_diff=1
@@ -50,10 +50,9 @@ def index_search(twotheta,tol,args=()):
             n+=1
             count=0
         else:
-            h,k,l=randint(0,5,(3))
+            h,k,l=randint(0,3,(3))
 
-#            ds_diff= recip_ds - intspace_orthorhombic(h,k,l,*args)
-            ds_diff= recip_ds - intspace_hexagonal(h,k,l,*args)
+            ds_diff= recip_ds - intspace_type(h,k,l,*args)
 
             print('({} {} {})'.format(h,k,l))
         print('n = ',n)
@@ -62,19 +61,16 @@ def index_search(twotheta,tol,args=()):
 
     return h,k,l,n,ds_diff
 
-#twotheta=9.35
-#twotheta=12.54
-#a,b,c = mof.param()
+
+#twotheta,a,b,c = mof.param()
 
 'sjoegrenite'
-twotheta=11.33
-a = 3.113
-c = 15.61
+twotheta,a,c = 11.33, 3.113, 15.61
 
+#ix=index_search(intspace_orthorhombic,twotheta,tol=1e-3,args=(a,b,c))
+ix=index_search(intspace_hexagonal,twotheta,tol=1e-3,args=(a,c))
 
-#ix=index_search(twotheta,tol=1e-4,args=(a,b,c))
-ix=index_search(twotheta,tol=1e-4,args=(a,c))
 
 d=braggslaw(twotheta,ix[3])
 
-print('h,k,l indices: {} \nn (order): {} \nresolution {} \nint. spacing: {} nm'.format(ix[0:3],ix[3],ix[4],d))
+print('2-theta = {} \nh,k,l indices: {} \nn (order): {} \nerror: {} \nint. spacing: {} nm'.format(twotheta,ix[0:3],ix[3],ix[4],d/ix[3]))
