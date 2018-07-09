@@ -1,15 +1,32 @@
-# Data manipulation program for XRD analysis
+# X-Ray Diffraction (XRD) analysis with Python
 
-Takes XRD data expressed as *.csv* files:
+## XRD.py
+* Takes XRD data expressed as *.csv* files:
 
-Performs a background subtraction algorithm on XRD data
+* Performs a background subtraction algorithm on XRD data
 
-Calculates crystallite size for each of the XRD spectrum
+* Calculates crystallite size for each of the XRD spectrum
 using the Scherrer equation and displays them on the shell.
 
-Plots one main graph with all XRD spectra in interest and 3 additional
+* Plots one main graph with all XRD spectra in interest and 3 additional
 smaller graphs serving as a comparison to the first graph (can be customized
 by changing the size of the *for loops*)
+
+## XRDsingle.py
+
+* Takes a single XRD file expressed as *.csv* files:
+
+* Performs a background subtraction algorithm on XRD data
+
+* Plots subtracted and non-subtracted XRD data in Python
+
+* Creates *.csv* file of background-subtracted version of XRD data, which can be open and edited in Excel (if Excel is your thing)
+
+## peak_index.py
+
+* Calculates interplanar spacing
+
+* If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak 
 
 ### (SEE LICENSE file in this repository)
 

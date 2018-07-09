@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 
 def scherrer(K,lmda,beta,theta):
+        
     return K*lmda / (beta*np.cos(theta))    #tau
 
 def locmax (x,y,x1=12,x2=13): 
@@ -20,14 +21,14 @@ def locmax (x,y,x1=12,x2=13):
             xsearch_index.append(list(x).index(n))
     
     max_y = 0
-    max_2theta = 0
+    max_twotheta = 0
     for i in xsearch_index:
         if y[i] > max_y:
             max_y = y[i]
-            max_2theta = x[i]
+            max_twotheta = x[i]
     
     hm = max_y/2
-    theta=max_2theta/2
+    theta=max_twotheta/2
     theta=theta*np.pi/180
     
     tol=1
@@ -44,7 +45,7 @@ def locmax (x,y,x1=12,x2=13):
 #    print(beta_range)
 #    print(beta)
     
-    s=scherrer(0.9,1.54,beta,theta)
+    s=scherrer(0.9,0.154,beta,theta)
     print('size*: {} nm'.format(s))
             
 
@@ -120,8 +121,8 @@ f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]
 for i in range(2,18):
     
     '''only plot data w/ following indices'''
-    if any([i ==2, i==13, i==14, i==15, i==16, i ==17]):
-
+#    if any([i ==2, i==12, i==14, i==15, i==16, i ==17]):
+    if any([i ==2, i==15, i==16, i ==17]):
         
         ydat,xdat = np.shape(data()[i])
         x, y, yb = np.zeros((3,ydat))
@@ -130,8 +131,8 @@ for i in range(2,18):
         yb=bacsub(x,y,tol=1)
         x,yb = movnavg(x,yb)
         
-#        plt.plot(x,yb,label=labels[i])
-#        plt.legend(loc='best')   
+    #        plt.plot(x,yb,label=labels[i])
+    #        plt.legend(loc='best')   
         
         
         axarr[0].plot(x,yb,label=labels[i])

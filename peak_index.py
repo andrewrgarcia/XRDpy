@@ -67,12 +67,14 @@ def index_search(twotheta,tol,args=()):
 #a,b,c = mof.param()
 
 'sjoegrenite'
-twotheta=11.3
+twotheta=11.33
 a = 3.113
 c = 15.61
 
 
+#ix=index_search(twotheta,tol=1e-4,args=(a,b,c))
 ix=index_search(twotheta,tol=1e-4,args=(a,c))
+
 d=braggslaw(twotheta,ix[3])
 
 print('h,k,l indices: {} \nn (order): {} \nresolution {} \nint. spacing: {} nm'.format(ix[0:3],ix[3],ix[4],d))
