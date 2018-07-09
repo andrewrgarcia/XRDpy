@@ -26,9 +26,9 @@ by changing the size of the *for loops*)
 
 * Calculates interplanar spacing
 
-* If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak 
+* If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak
 
-### (SEE LICENSE file in this repository)
+## LICENSE file excerpt -see: LICENSE file in this repository-
 
    Copyright 2018 Andrew R Garcia
 
