@@ -1,7 +1,7 @@
+lattice_params.py
+
 # XRD .csv files
 *.csv
-
-forgitignore.txt
 
 # Windows image file caches
 Thumbs.db
