@@ -128,6 +128,7 @@ def find_latticeparams():
 #        hkl_sel = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
 
         hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
+#        hkl_universal = list(set(list(itertools.permutations([0,0,0,1,1,1,2,2,2,3,3,3], 3))))
         hkl_sel = list(totuple(np.random.permutation(hkl_universal)[:10]))
         
         sol = minimize(srfun,x0,hkl_sel)
