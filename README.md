@@ -22,7 +22,7 @@ by changing the size of the *for loops*)
 
 * Creates *.csv* file of background-subtracted version of XRD data, which can be open and edited in Excel (if Excel is your thing)
 
-## peak_index.py
+## indexing.py
 
 * Calculates interplanar spacing
 

@@ -91,10 +91,8 @@ def index_search(isp_type,twotheta,tol,args=()):
 
 
 def find_latticeparams():    
-    '''EXAMPLE FOR FINDING LATTICE PARAMETERS FROM POWDER PATTERNS [WHEN H K L INDICES ARE KNOWN]
-    (using data from:
-        https://cbc-wb01x.chemistry.ohio-state.edu/~woodward/ch754/indexing.pdf
-        https://www.researchgate.net/file.PostFileLoader.html?id...assetKey...
+    '''EXAMPLE FOR FINDING LATTICE PARAMETERS FROM POWDER PATTERNS
+    (credits: data/resources attached as .pdf files in this repository)
         '''
     
     def srfun(x, hkl_selected):
@@ -104,9 +102,9 @@ def find_latticeparams():
         '''1/d^2 (sqrl_d): values for all 2-theta values obtained through Braggs Law'''
         twotheta_list=[27.4344,30.179,36.071,39.1885,41.239,44.0389,56.6232,62.7525,64.0439,68.9969]
         sqrl_d=[braggslaw(twotheta_list[i]) for i in range(len(twotheta_list))]
-    
         
-        '''1/d_hkl^2 (sqrl_dhkl):  values obtained using lattice equation and hkl values obtained from indexing'''
+        '''1/d_hkl^2 (sqrl_dhkl):  values obtained through lattice equation'''
+        
         'structure name'
         isp_type = isp_tetragonal
         
@@ -118,14 +116,15 @@ def find_latticeparams():
             
         return sqresid
 
-    
+    'automatic indexing algorithm'
     tol=1
     'takes a while to get to desired precision / tolerance'
 #    while tol > 1e-8:
     while tol > 1e-2:
-
+    
         x0=[1,1]
 
+        'test'
 #        hkl_sel = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
 
         hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
