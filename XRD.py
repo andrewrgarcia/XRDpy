@@ -122,24 +122,24 @@ for i in range(2,18):
     
     '''only plot data w/ following indices'''
 #    if any([i ==2, i==12, i==14, i==15, i==16, i ==17]):
-    if any([i ==2, i==15, i==16, i ==17]):
+#    if any([i ==2, i==15, i==16, i ==17]):
         
-        ydat,xdat = np.shape(data()[i])
-        x, y, yb = np.zeros((3,ydat))
-        x=data()[i][:,0]
-        y=data()[i][:,1]
-        yb=bacsub(x,y,tol=1)
-        x,yb = movnavg(x,yb)
-        
-    #        plt.plot(x,yb,label=labels[i])
-    #        plt.legend(loc='best')   
-        
-        
-        axarr[0].plot(x,yb,label=labels[i])
-        axarr[0].legend(loc='best')   
-        
-        print(labels[i])
-        locmax(x,yb)
+    ydat,xdat = np.shape(data()[i])
+    x, y, yb = np.zeros((3,ydat))
+    x=data()[i][:,0]
+    y=data()[i][:,1]
+    yb=bacsub(x,y,tol=1)
+    x,yb = movnavg(x,yb)
+    
+#        plt.plot(x,yb,label=labels[i])
+#        plt.legend(loc='best')   
+    
+    
+    axarr[0].plot(x,yb,label=labels[i])
+    axarr[0].legend(loc='best')   
+    
+    print(labels[i])
+    locmax(x,yb)
 
 
 for i in range(3):
