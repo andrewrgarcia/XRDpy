@@ -110,15 +110,6 @@ def find_latticeparams():
         'structure name'
         isp_type = isp_tetragonal
         
-#        hkl_universal = list(set(list(itertools.permutations([0,0,0,1,1,1,2,2,2,3,3,3], 3))))
-#        hkl_selected = np.random.permutation(hkl_universal)[:len(twotheta_list)]
-        
-        'test'
-#        hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
-#        hkl_selected = totuple(np.random.permutation(hkl_universal)[:len(twotheta_list)])
-        
-#        hkl_selected = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
-        
         sqrl_dhkl = [isp_type(*indices,a,c) for indices in hkl_selected]
     
         sqresid=0
