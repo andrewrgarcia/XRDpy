@@ -86,7 +86,9 @@ def index_search(isp_type,twotheta,tol,args=()):
 def find_latticeparams():    
     '''EXAMPLE FOR FINDING LATTICE PARAMETERS FROM POWDER PATTERNS [WHEN H K L INDICES ARE KNOWN]
     (using data from:
-        https://cbc-wb01x.chemistry.ohio-state.edu/~woodward/ch754/indexing.pdf '''
+        https://cbc-wb01x.chemistry.ohio-state.edu/~woodward/ch754/indexing.pdf
+        https://www.researchgate.net/file.PostFileLoader.html?id...assetKey...
+        '''
     
     def srfun(x):
         '''Sum of squared residuals function (sqresid)'''
