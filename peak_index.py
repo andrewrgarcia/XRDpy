@@ -11,8 +11,15 @@ import numpy as np
 import math
 import mof_lattice_params as mof
 
+import itertools
 from scipy.optimize import minimize
 
+def totuple(a):
+    try:
+        return tuple(totuple(i) for i in a)
+    except TypeError:
+        return a
+    
 #def braggslaw(twotheta,n):
 #
 #    '2d sin(theta)=n*lmda'
@@ -94,30 +101,46 @@ def find_latticeparams():
         '''Sum of squared residuals function (sqresid)'''
         a,c= x
         
-        '''1/d^2 (rld_sq): values for all 2-theta values obtained through Braggs Law'''
+        '''1/d^2 (sqrl_d): values for all 2-theta values obtained through Braggs Law'''
         twotheta_list=[27.4344,30.179,36.071,39.1885,41.239,44.0389,56.6232,62.7525,64.0439,68.9969]
-        rld_sq=[braggslaw(twotheta_list[i]) for i in range(len(twotheta_list))]
+        sqrl_d=[braggslaw(twotheta_list[i]) for i in range(len(twotheta_list))]
     
         
-        '''1/d_hkl^2 (rlhkl_sq):  values obtained using lattice equation and hkl values obtained from indexing'''
+        '''1/d_hkl^2 (sqrl_dhkl):  values obtained using lattice equation and hkl values obtained from indexing'''
         'structure name'
         isp_type = isp_tetragonal
-        hkllist = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
-        rlhkl_sq = [isp_type(*indices,a,c) for indices in hkllist]
+        
+#        hkl_universal = list(set(list(itertools.permutations([0,0,0,1,1,1,2,2,2,3,3,3], 3))))
+#        hkl_selected = np.random.permutation(hkl_universal)[:len(twotheta_list)]
+        
+        'test'
+        hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
+        hkl_selected = totuple(np.random.permutation(hkl_universal)[:len(twotheta_list)])
+        
+#        hkl_selected = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
+        
+        sqrl_dhkl = [isp_type(*indices,a,c) for indices in hkl_selected]
     
         sqresid=0
-        for i,j in zip(rld_sq,rlhkl_sq):
+        for i,j in zip(sqrl_d,sqrl_dhkl):
             sqresid += (i-j)**2
             
-        return sqresid 
+        return sqresid
+
     
+#    tol=1
+#    while tol > 1e-8:
     x0=[1,1]
+    'appears to be randomly iterating for every minimization trial'
     sol = minimize(srfun,x0)
+    tol=sol.fun
     
     return sol
     
 print(find_latticeparams())
-print('lattice parameters are:',find_latticeparams().x)
+print('\nlattice parameters are:',find_latticeparams().fun)
+    
+
 
 #twotheta,a,b,c = mof.param()
 #
