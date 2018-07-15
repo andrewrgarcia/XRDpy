@@ -97,7 +97,7 @@ def find_latticeparams():
         https://www.researchgate.net/file.PostFileLoader.html?id...assetKey...
         '''
     
-    def srfun(x):
+    def srfun(x, hkl_selected):
         '''Sum of squared residuals function (sqresid)'''
         a,c= x
         
@@ -114,8 +114,8 @@ def find_latticeparams():
 #        hkl_selected = np.random.permutation(hkl_universal)[:len(twotheta_list)]
         
         'test'
-        hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
-        hkl_selected = totuple(np.random.permutation(hkl_universal)[:len(twotheta_list)])
+#        hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
+#        hkl_selected = totuple(np.random.permutation(hkl_universal)[:len(twotheta_list)])
         
 #        hkl_selected = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
         
@@ -128,17 +128,30 @@ def find_latticeparams():
         return sqresid
 
     
-#    tol=1
+    tol=1
+    'takes a while to get to desired precision / tolerance'
 #    while tol > 1e-8:
-    x0=[1,1]
-    'appears to be randomly iterating for every minimization trial'
-    sol = minimize(srfun,x0)
-    tol=sol.fun
+    while tol > 1e-2:
+
+        x0=[1,1]
+
+#        hkl_sel = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
+
+        hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
+        hkl_sel = list(totuple(np.random.permutation(hkl_universal)[:10]))
+        
+        sol = minimize(srfun,x0,hkl_sel)
+        tol=sol.fun
+#        print(sol.fun, sol.x)
     
-    return sol
-    
-print(find_latticeparams())
-print('\nlattice parameters are:',find_latticeparams().fun)
+    return sol.x,hkl_sel
+
+solution = find_latticeparams()
+
+print(solution)
+print('\nlattice parameters are:',solution[0])
+
+print('\nhkl indices are:',solution[1])
     
 
 
