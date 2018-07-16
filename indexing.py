@@ -14,6 +14,9 @@ import mof_lattice_params as mof
 import itertools
 from scipy.optimize import minimize
 
+import timeit
+start = timeit.default_timer()
+
 def totuple(a):
     try:
         return tuple(totuple(i) for i in a)
@@ -120,32 +123,50 @@ def find_latticeparams():
     tol=1
     'takes a while to get to desired precision / tolerance'
 #    while tol > 1e-8:
-    while tol > 1e-2:
+    n=1
+    hkl_created=[]
+
+    while tol > 5e-2 or False:
     
+
         x0=[1,1]
 
         'test'
 #        hkl_sel = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
 
-        hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
-#        hkl_universal = list(set(list(itertools.permutations([0,0,0,1,1,1,2,2,2,3,3,3], 3))))
+#        hkl_universal = [(1,1,0),(0,0,1),(1,0,1),(2,0,0),(1,1,1),(2,1,0),(2,2,0),(0,0,2),(3,1,0),(3,0,1)]   
+        hkl_universal = list(set(list(itertools.permutations([0,0,0,1,1,1,2,2,2,3,3,3], 3))))
         hkl_sel = list(totuple(np.random.permutation(hkl_universal)[:10]))
         
-        sol = minimize(srfun,x0,hkl_sel)
+        
+        if hkl_sel not in hkl_created:
+            hkl_created.append(hkl_sel)
+            True
+        else:
+            False
+
+        
+        
+#        sol = minimize(srfun,x0,hkl_sel)
+        sol = minimize(srfun,x0,hkl_sel,bounds=[(0,None),(0,None)])
         tol=sol.fun
-#        print(sol.fun, sol.x)
-    
-    return sol.x,hkl_sel
+        print(n)
+        n+=1
+
+    return sol.x,hkl_sel,tol
 
 solution = find_latticeparams()
 
-print(solution)
+#print(solution)
 print('\nlattice parameters are:',solution[0])
-
 print('\nhkl indices are:',solution[1])
-    
+print('error',solution[2])
 
 
+stop = timeit.default_timer()
+comptime = round(stop - start,3) 
+
+print('computational time {} min'.format(comptime/60))
 #twotheta,a,b,c = mof.param()
 #
 #'sjoegrenite'
