@@ -89,10 +89,15 @@ def movnavg(xdata,ydata,n=1):
                     
 def data():
     
-    filename=["dstape_perm.csv","dstape_rmvl.csv","MIL53-adv-001.csv","MIL53-adv-006.csv","MIL53-adv-006-uncalcined.csv",
-              "MIL53-adv-008.csv","MIL53-adv-010.csv","MIL53-adv-011.csv","MIL53-adv-013.csv","MIL002-C-5umf-C.csv",
-              "MIL003-C-5umf-C.csv","MIL004-C-5umf-C.csv","MIL53-adv-016.csv","MIL53-adv-016_hires.csv","MIL53-adv-017.csv",
-              "MIL53-adv-019.csv","MIL53-adv-020.csv","MIL53-adv-021.csv","mil_pwc.csv"]
+    filename=["dstape_perm.csv","dstape_rmvl.csv","MIL53-adv-001.csv",
+              "MIL53-adv-006.csv","MIL53-adv-006-uncalcined.csv","MIL53-adv-008.csv",
+              "MIL53-adv-010.csv","MIL53-adv-011.csv","MIL53-adv-013.csv",
+              "MIL53-adv-014_uncalcined.csv","MIL002-C-5umf-C.csv","MIL003-C-5umf-C.csv",
+              "MIL004-C-5umf-C.csv","MIL53-adv-015as-vh.csv","MIL53-adv-016.csv",
+              "MIL53-adv-016_hires.csv","MIL53-adv-017.csv","MIL53-adv-019.csv",
+              "MIL53-adv-020.csv","MIL53-adv-021.csv","MIL53-adv-021ht-vh.csv",
+              "MIL53-adv-021_uncalcined.csv","MIL53-adv-022_calcined-1.csv","MIL53-adv-022_calcined-1.csv",
+              "MIL53-adv-022_uncalcined.csv","mil_pwc.csv"]
     
 
     M=len(filename)
@@ -109,48 +114,62 @@ def data():
 
 
 labels=['3M double-sided tape (Permanent)','3M double-sided tape (Removable)',
-        'MIL 1','MIL 6','MIL 6_as','MIL 8','MIL 10','MIL 11',
-        'MIL 13','MIL 2 C5umfC','MIL 3 C5umfC','MIL 4 C5umfC',
-        'MIL 16', 'MIL 16 (hi-res)','MIL 17','MIL 19', 'MIL 20', 'MIL 21','MIL (simulation)']
+        'MIL 1','MIL 6','MIL 6_as','MIL 8','MIL 10', 
+        'MIL 11','MIL 13','MIL 14_as','MIL 2 C5umfC','MIL 3 C5umfC',
+        'MIL 4 C5umfC','MIL 15as_vacuumh','MIL 16', 'MIL 16 (hi-res)','MIL 17',
+        'MIL 19', 'MIL 20', 'MIL 21','MIL 21ht_vacuumh','MIL 21_as',
+        'MIL 22ht_1','MIL22ht_2','MIL 22_as','MIL (simulation)']
 
 
-f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
-#f, axarr = plt.subplots(2, sharex=True,gridspec_kw={'height_ratios':[8,4]})
+#f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
+f, axarr = plt.subplots(3, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
 
 
-for i in range(2,18):
+for i in range(2,25):
     
     '''only plot data w/ following indices'''
+    
+    'non-calcinated samples'
+    if any([i==4, i==9,i==13,i==21,i==24]):
+    
+#    if any([i==9, i==13]):
 #    if any([i ==2, i==12, i==14, i==15, i==16, i ==17]):
-#    if any([i ==2, i==15, i==16, i ==17]):
+#    'calcinated samples (latest)'
+#    if any([i==15, i==16, i ==17, i==18,i==20]):    
+    
+#    if any([i==19]):
+#    if any([i==20]):
+
+
+    
         
-    ydat,xdat = np.shape(data()[i])
-    x, y, yb = np.zeros((3,ydat))
-    x=data()[i][:,0]
-    y=data()[i][:,1]
-    yb=bacsub(x,y,tol=1)
-    x,yb = movnavg(x,yb)
-    
-#        plt.plot(x,yb,label=labels[i])
-#        plt.legend(loc='best')   
-    
-    
-    axarr[0].plot(x,yb,label=labels[i])
-    axarr[0].legend(loc='best')   
-    
-    print(labels[i])
-    locmax(x,yb)
+        ydat,xdat = np.shape(data()[i])
+        x, y, yb = np.zeros((3,ydat))
+        x=data()[i][:,0]
+        y=data()[i][:,1]
+        yb=bacsub(x,y,tol=1)
+        x,yb = movnavg(x,yb)
+        
+    #        plt.plot(x,yb,label=labels[i])
+    #        plt.legend(loc='best')   
+        
+        
+        axarr[0].plot(x,yb,label=labels[i])
+        axarr[0].legend(loc='best')   
+        
+        print(labels[i])
+        locmax(x,yb)
 
 
-for i in range(3):
-    rydat,rxdat = np.shape(data()[i])
+for i in range(2):
+    rydat,rxdat = np.shape(data()[i+1])
     rx, ry, ryb = np.zeros((3,rydat))
-    rx=data()[i][:,0]
-    ry=data()[i][:,1]
+    rx=data()[i+1][:,0]
+    ry=data()[i+1][:,1]
     ryb=bacsub(rx,ry,tol=1)
     rx,ryb = movnavg(rx,ryb)
 
-    axarr[i+1].plot(rx,ryb,label=labels[i],color='k')
+    axarr[i+1].plot(rx,ryb,label=labels[i+1],color='k')
     axarr[i+1].legend(loc='best')
     
 #    print(labels[i])

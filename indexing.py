@@ -126,7 +126,7 @@ def find_latticeparams():
     n=1
     hkl_created=[]
 
-    while tol > 5e-2 or False:
+    while tol > 1e-2 or False:
     
 
         x0=[1,1]
