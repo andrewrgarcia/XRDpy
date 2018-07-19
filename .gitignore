@@ -1,9 +1,34 @@
+# folders
+_practice/
+
+# Python files
 mof_lattice_params.py
 results_mof-peak_index.txt
 indexing_old.py
+write_XRD.py
 
-# XRD .csv files
+# XRD files
 *.csv
+*.xrdml
+*.xy
+
+#other extensions
+*.bak
+*.bak00
+*.bak01
+*.bak02
+*.emf
+*.geq
+*.ger
+*.hpf
+*.sav
+
+#also popular extensions
+*.jpg
+*.xls
+*.xlsx
+*.rtf
+
 
 # Windows image file caches
 Thumbs.db
