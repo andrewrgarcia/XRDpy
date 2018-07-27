@@ -4,8 +4,9 @@ _practice/
 # Python files
 mof_lattice_params.py
 results_mof-peak_index.txt
+string.txt
 indexing_old.py
-write_XRD.py
+confidential_XRD.py
 
 # XRD files
 *.csv

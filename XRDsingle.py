@@ -31,7 +31,7 @@ def data():
     '''put .csv file in python directory 
     replace "sample.csv" with name of .csv file to be analyzed below '''
     
-    with open("[insertcsvfilenamehere].csv", 'r') as f:
+    with open("sample.csv", 'r') as f:
 
 
         X = list(csv.reader(f, delimiter=","))        

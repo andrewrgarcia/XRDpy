@@ -8,6 +8,7 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
+from confidential_XRD import csvfiles, labels_for_csvfiles
 
 def scherrer(K,lmda,beta,theta):
         
@@ -108,22 +109,16 @@ def movnavg(xdata,ydata,n=1):
         
     return newx,newy
 
-def XRD_int_ratio(x,y,xR1=[4,10],xR2=[30,40]):
+def XRD_int_ratio(x,y,xR1=[8.88,9.6],xR2=[10.81,11.52]):
     'XRD b/t two intensities ratio'
     return local_max(x,y,xR2)[1]/local_max(x,y,xR1)[1]
 
+
 def data():
     
-    filename=["dstape_perm.csv","dstape_rmvl.csv","MIL53-001ht.csv",
-              "MIL53-006ht.csv","MIL53-006as.csv","MIL53-008ht.csv",
-              "MIL53-010ht.csv","MIL53-011ht.csv","MIL53-013ht.csv",
-              "MIL53-014as.csv","MIL002-C-5umf-C.csv","MIL003-C-5umf-C.csv",
-              "MIL004-C-5umf-C.csv","MIL53-015as-vh.csv","MIL53-016ht.csv",
-              "MIL53-016ht_hires.csv","MIL53-017ht.csv","MIL53-018ht.csv",
-              "MIL53-018as.csv","MIL53-019ht.csv","MIL53-020ht.csv",
-              "MIL53-021ht.csv","MIL53-021ht-vh.csv","MIL53-021as.csv",
-              "MIL53-022ht1.csv","MIL53-022ht2.csv","MIL53-022as.csv",
-              "mil_pwc.csv"]
+    filename=csvfiles()
+    '''csvfiles: returns vector of .csv file names in the string form of 
+    [" xxx .csv", ... , ...., ..., "xxx.csv"]'''
 
     M=len(filename)
     X = [[]]*M
@@ -137,37 +132,35 @@ def data():
 
     return X
 
-labels=['3M double-sided tape (Permanent)','3M double-sided tape (Removable)',
-        'MIL 1','MIL 6','MIL 6_as','MIL 8','MIL 10', 
-        'MIL 11','MIL 13','MIL 14_as','MIL 2 C5umfC','MIL 3 C5umfC',
-        'MIL 4 C5umfC','MIL 15as_vacuumh','MIL 16', 'MIL 16 (hi-res)','MIL 17',
-        'MIL 18','MIL 18_as','MIL 19', 'MIL 20', 'MIL 21','MIL 21ht_vacuumh','MIL 21_as',
-        'MIL 22ht_1','MIL22ht_2','MIL 22_as','MIL (simulation)']
+    labels=labels_for_csvfiles()
+    '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
+    in the string form of ['xxx', ... , ...., ..., 'xxx']'''
 
 
 #f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
 f, axarr = plt.subplots(3, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
 
 
-for i in range(2,27):
-    
-    '''only plot data w/ following indices; enter following line and then indent'''   
-#    if any([i==[enter number], i == ... ,i == ...])
+for i in range(2,16):
+#for i in range(27,35):
 
-    ydat,xdat = np.shape(data()[i])
-    x, y, yb = np.zeros((3,ydat))
-    x=data()[i][:,0]
-    y=data()[i][:,1]
-    yb=bacsub(x,y,tol=1)
-    x,yb = movnavg(x,yb)
-    
-    
-    axarr[0].plot(x,yb,label=labels[i])
-    axarr[0].legend(loc='best')   
-    
-    print(labels[i])
-    print('Sc width: {} nm'.format(schw_peakcal(x,yb)))
-#    print('C11/C9: ',Ctratio(x,yb))
+        
+#    if any([i==8,i==10, i==11, i==12,i==13]):
+
+        ydat,xdat = np.shape(data()[i])
+        x, y, yb = np.zeros((3,ydat))
+        x=data()[i][:,0]
+        y=data()[i][:,1]
+        yb=bacsub(x,y,tol=1)
+        x,yb = movnavg(x,yb)
+        
+        
+        axarr[0].plot(x,yb,label=labels[i])
+        axarr[0].legend(loc='best')   
+        
+        print(labels[i])
+        print('Sc width: {} nm'.format(schw_peakcal(x,yb)))
+        print('C11/C9: {} \n'.format(XRD_int_ratio(x,yb)))
 
 
 for i in range(2):
