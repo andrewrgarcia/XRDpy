@@ -132,9 +132,10 @@ def data():
 
     return X
 
-    labels=labels_for_csvfiles()
-    '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
-    in the string form of ['xxx', ... , ...., ..., 'xxx']'''
+
+labels=labels_for_csvfiles()
+'''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
+in the string form of ['xxx', ... , ...., ..., 'xxx']'''
 
 
 #f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})

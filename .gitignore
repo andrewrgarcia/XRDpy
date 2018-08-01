@@ -30,6 +30,9 @@ confidential_XRD.py
 *.xlsx
 *.rtf
 
+# Do not ignore
+!XRDpy_drawing.jpg
+
 
 # Windows image file caches
 Thumbs.db
