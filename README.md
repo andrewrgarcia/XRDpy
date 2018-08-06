@@ -6,14 +6,16 @@
 
 * Plots data
 
-XRD.py also integrates the XRD_functions.py script in order to do the following
+#### XRD.py also integrates the XRD_functions.py script in order to do the following:
 
-* Performs a background subtraction algorithm on XRD data
+* Perform background subtraction algorithms on XRD data
 
-* Calculates crystallite size for each of the XRD spectrum
+* Calculate crystallite size for each of the XRD spectrum
 using the Scherrer equation and displays them on the shell.
 
-* Plots one main graph with all XRD spectra in interest and 3 additional
+* Do an n-point moving average to smooth the data (if desired)
+
+* Plot one main graph with all XRD spectra in interest and 3 additional
 smaller graphs serving as a comparison to the first graph (can be customized
 by changing the size of the *for loops*)
 
