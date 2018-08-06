@@ -45,7 +45,7 @@ def plotting():
     
     
 #    for i in range(2,16):
-    for i in range(10,13):
+    for i in range(24,27):
     
             
     #    if any([i==8,i==10, i==11, i==12,i==13]):

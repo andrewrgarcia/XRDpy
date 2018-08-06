@@ -1,7 +1,12 @@
 # X-Ray Diffraction (XRD) analysis with Python
 
-## XRD.py
+## XRD.py [and XRD_functions.py]
+
 * Takes XRD data expressed as *.csv* files:
+
+* Plots data
+
+XRD.py also integrates the XRD_functions.py script in order to do the following
 
 * Performs a background subtraction algorithm on XRD data
 
