@@ -1,10 +1,11 @@
+## Ignore files ["Do not ignore files" are at the bottom]
+
 # folders
 _practice/
+XRD_files/
 
 # Python files
 mof_lattice_params.py
-results_mof-peak_index.txt
-string.txt
 indexing_old.py
 confidential_XRD.py
 
@@ -25,13 +26,12 @@ confidential_XRD.py
 *.sav
 
 #also popular extensions
+*.txt
 *.jpg
 *.xls
 *.xlsx
 *.rtf
-
-# Do not ignore
-!XRDpy_drawing.jpg
+*.pdf
 
 
 # Windows image file caches
@@ -81,3 +81,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+# Do not ignore
+!XRD_drawing.jpg
