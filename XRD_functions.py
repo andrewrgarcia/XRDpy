@@ -4,11 +4,9 @@ Created on Fri Aug  3 15:06:48 2018
 
 @author: garci
 """
-
 import numpy as np
 
-
-'''To find local maxima'''
+'''Local maxima finder'''
 def local_max(x,y,xrange=[12,13]): 
     x1,x2=xrange
     xsearch_index=[]
@@ -48,7 +46,7 @@ def schw_peakcal(x,y,xrange=[12,13]):
             max_y = y[i]
             max_x = x[i]
     
-    'scherrer width peak calculations'
+#    'scherrer width peak calculations'
     max_twotheta,max_y = max_x,max_y
     
     hm = max_y/2
@@ -109,10 +107,6 @@ def movnavg(xdata,ydata,n=1):
     for i in range(L):
         newx[i] = xdata[i*n]
 
-#    'test it'
-#    plt.plot(xdata,ydata)
-#    plt.plot(newx,newy,linewidth=3)
-        
     return newx,newy
 
 
