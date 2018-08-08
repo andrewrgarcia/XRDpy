@@ -10,30 +10,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 
+from XRD_functions import *
 
+'write the name of your csv file below:'
+name = "sample.csv"
 
-def bacsub(xdata,ydata,tol=1):
-    'approx. # points for half width of peaks'
-    L=len(ydata)
-    lmda = int(0.50*L/(xdata[0]-xdata[L-1]))
+def data( filename = name ):
     
-    newdat=np.zeros(L)
-    for i in range(L):        
-        if ydata[(i+lmda)%L] > tol*ydata[i]:          #tolerance 'tol'
-            newdat[(i+lmda)%L] = ydata[(i+lmda)%L] - ydata[i]
-        else:
-            if ydata[(i+lmda)%L] < ydata[i]: 
-                newdat[(i+lmda)%L] = 0
     
-    return newdat
-
-def data():
-    '''put .csv file in python directory 
-    replace "sample.csv" with name of .csv file to be analyzed below '''
+    '''if the csv file is in a subfolder to this script's, specify path'''
+    fname_path='XRD_files/'
     
-    with open("sample.csv", 'r') as f:
-
-
+    with open(fname_path+filename, 'r') as f:
         X = list(csv.reader(f, delimiter=","))        
     Xc=np.array(X[1:], dtype=np.float)        
 
@@ -46,9 +34,8 @@ ybi=bacsub(xi,yi,tol=1)
 plt.figure()
 plt.plot(xi,yi,color='darkorange',label='not treated')
 plt.plot(xi,ybi,color='navy',label='subtracted background')
-#plt.plot(xi,ybi,color='red')
 
-plt.title('')
+plt.title(filename[:-4])
 plt.xlabel(r'$2\theta$ / deg')
 plt.ylabel('Intensity / a.u.')
 plt.legend(loc='best')
@@ -62,7 +49,3 @@ def excel(x,y):
     xw.Range((1,2)).options(transpose=True).value=y
 
 excel(xi,ybi)
-    
-    
-    
-

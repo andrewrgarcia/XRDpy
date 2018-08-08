@@ -74,7 +74,6 @@ def schw_peakcal(x,y,xrange=[12,13]):
 
 '''Background subtraction operation:'''
 def bacsub(xdata,ydata,tol=1):
-    
     'approx. # points for half width of peaks'
     L=len(ydata)
     lmda = int(0.50*L/(xdata[0]-xdata[L-1]))
