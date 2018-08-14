@@ -7,7 +7,7 @@ XRD_files/
 # Python files
 mof_lattice_params.py
 indexing_old.py
-confidential_XRD.py
+XRD_mydatabase.py
 
 # XRD files
 *.csv

@@ -35,7 +35,7 @@ plt.figure()
 plt.plot(xi,yi,color='darkorange',label='not treated')
 plt.plot(xi,ybi,color='navy',label='subtracted background')
 
-plt.title(filename[:-4])
+plt.title(name[:-4])
 plt.xlabel(r'$2\theta$ / deg')
 plt.ylabel('Intensity / a.u.')
 plt.legend(loc='best')
