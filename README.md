@@ -1,14 +1,11 @@
 # X-Ray Diffraction (XRD) analysis with Python
-### Andrew Garcia, 2018
-
 
 ## XRD.py [and XRD_functions.py]
+#### XRD.py also integrates the XRD_functions.py script in order to do the following:
 
 * Takes XRD data expressed as *.csv* files:
 
 * Plots data
-
-#### XRD.py also integrates the XRD_functions.py script in order to do the following:
 
 * Perform background subtraction algorithms on XRD data
 
