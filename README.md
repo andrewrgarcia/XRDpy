@@ -1,4 +1,5 @@
 # X-Ray Diffraction (XRD) analysis with Python
+#### (c) Andrew R. Garcia
 
 ## XRD.py [and XRD_functions.py]
 
