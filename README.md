@@ -1,22 +1,22 @@
 # X-Ray Diffraction (XRD) analysis with Python
+#### Andrew Garcia
+
 
 ## XRD.py [and XRD_functions.py]
 #### XRD.py integrates the XRD_functions.py script in order to do the following:
 
-* Takes XRD data expressed as *.csv* files:
-
-* Plots data
+* Take XRD data expressed as *.csv* files:
 
 * Perform background subtraction algorithms on XRD data
+
+* Data smoothing (with an n-point moving average) [if desired]
+
+* Plot one main graph with all XRD spectra in interest and 3 additional smaller graphs serving as a comparison to the first graph (can be customized by changing the size of the *for loops*)
 
 * Calculate crystallite size for each of the XRD spectrum
 using the Scherrer equation and displays them on the shell.
 
-* Do an n-point moving average to smooth the data (if desired)
-
-* Plot one main graph with all XRD spectra in interest and 3 additional
-smaller graphs serving as a comparison to the first graph (can be customized
-by changing the size of the *for loops*)
+* Find location of emission peaks corresponding to secondary radiation sources (with K_alpha peak as a reference)
 
 ## XRDsingle.py
 
