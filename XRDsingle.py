@@ -13,7 +13,7 @@ from matplotlib.font_manager import FontProperties
 from XRD_functions import *
 
 'write the name of your csv file below:'
-name = "sample.csv"
+name = "MIL53-016ht.csv"
 
 def data( filename = name ):
     
@@ -34,6 +34,9 @@ ybi=bacsub(xi,yi,tol=1)
 plt.figure()
 plt.plot(xi,yi,color='darkorange',label='not treated')
 plt.plot(xi,ybi,color='navy',label='subtracted background')
+
+'Find if XRD peaks are the product of a secondary radiation'
+emission_lines(xi, yi,twothet_range_Ka=[10,13])
 
 plt.title(name[:-4])
 plt.xlabel(r'$2\theta$ / deg')

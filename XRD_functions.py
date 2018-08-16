@@ -5,6 +5,8 @@ Created on Fri Aug  3 15:06:48 2018
 @author: garci
 """
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 '''Local maxima finder'''
 def local_max(x,y,xrange=[12,13]): 
@@ -22,6 +24,22 @@ def local_max(x,y,xrange=[12,13]):
             max_x = x[i]
     
     return max_x, max_y
+
+'''Emission lines arising from different types of radiation i.e. K_beta radiation
+wavelength of K_beta == 0.139 nm'''
+def emission_lines(x, y, twothet_range_Ka=[12,13], lmda_Ka = 0.154,lmda_Ki=0.139):
+    
+    twothet_Ka_deg, int_Ka = local_max(x,y,xrange=twothet_range_Ka)
+    twothet_Ka=twothet_Ka_deg*np.pi/180
+    
+    twothet_Ki = 2*np.arcsin((lmda_Ki/lmda_Ka)*np.sin(twothet_Ka/2))
+    twothet_Ki_deg = twothet_Ki*180/np.pi
+    
+    plt.vlines(twothet_Ka_deg,0,int_Ka, colors='k', linestyles='solid', \
+               label=r'K$\alpha$; $\theta$ = {} '.format(round(twothet_Ka_deg,2)))
+    plt.vlines((twothet_Ka_deg+twothet_Ki_deg)/2,0,int_Ka, colors='k', linestyles='--', label='')
+    plt.vlines(twothet_Ki_deg,0,int_Ka, colors='r', linestyles='solid',\
+               label=r'K$\beta$; $\theta$ = {} '.format(round(twothet_Ki_deg,2)))
 
 
 '''Scherrer equation'''

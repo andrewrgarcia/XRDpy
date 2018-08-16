@@ -61,6 +61,8 @@ def plotting():
             axarr[0].plot(x,yb,label=labels[i])
             axarr[0].legend(loc='best')   
             
+            emission_lines(x, yb,twothet_range_Ka=[10,13])
+            
             print(labels[i])
             print('Scherrer width: {} nm'.format(schw_peakcal(x,yb)))
             print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
