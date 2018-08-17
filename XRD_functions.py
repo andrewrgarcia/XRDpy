@@ -27,13 +27,19 @@ def local_max(x,y,xrange=[12,13]):
 
 '''Emission lines arising from different types of radiation i.e. K_beta radiation
 wavelength of K_beta == 0.139 nm'''
-def emission_lines(x, y, twothet_range_Ka=[12,13], lmda_Ka = 0.154,lmda_Ki=0.139):
+def emission_lines(x, y, twothet_range_Ka=[10,20], lmda_Ka = 0.154,lmda_Ki=0.139):
     
     twothet_Ka_deg, int_Ka = local_max(x,y,xrange=twothet_range_Ka)
     twothet_Ka=twothet_Ka_deg*np.pi/180
     
     twothet_Ki = 2*np.arcsin((lmda_Ki/lmda_Ka)*np.sin(twothet_Ka/2))
     twothet_Ki_deg = twothet_Ki*180/np.pi
+    
+    return twothet_Ka_deg, int_Ka, twothet_Ki_deg
+
+def emission_lines_plt(x, y, twothet_range_Ka=[10,20], lmda_Ka = 0.154,lmda_Ki=0.139):
+    
+    twothet_Ka_deg, int_Ka, twothet_Ki_deg = emission_lines(x, y, twothet_range_Ka, lmda_Ka ,lmda_Ki)
     
     plt.vlines(twothet_Ka_deg,0,int_Ka, colors='k', linestyles='solid', \
                label=r'K$\alpha$; $\theta$ = {} '.format(round(twothet_Ka_deg,2)))

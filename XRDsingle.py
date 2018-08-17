@@ -13,7 +13,7 @@ from matplotlib.font_manager import FontProperties
 from XRD_functions import *
 
 'write the name of your csv file below:'
-name = "sample.csv"
+name = "MIL53-021ht.csv"
 
 def data( filename = name ):
     
@@ -35,7 +35,11 @@ plt.figure()
 #plt.plot(xi,yi,color='darkorange',label='not treated')
 plt.plot(xi,ybi,color='navy',label='subtracted background')
 
-emission_lines(xi, ybi,twothet_range_Ka=[10,20])
+emission_lines_plt(xi, ybi,twothet_range_Ka=[9,10])
+emission_lines_plt(xi, ybi,twothet_range_Ka=[10,17])
+emission_lines_plt(xi, ybi,twothet_range_Ka=[17,18])
+emission_lines_plt(xi, ybi,twothet_range_Ka=[20,30])
+
 
 
 plt.title(name[:-4])

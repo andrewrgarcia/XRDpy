@@ -46,10 +46,12 @@ def plotting():
     #f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
     f, axarr = plt.subplots(3, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
     
+    
+
 #    for i in range(2,16):
-    for i in range(24,27):
+    for i in range(9,27):
            
-    #    if any([i==8,i==10, i==11, i==12,i==13]):
+        if any([i==14,i==19, i==21]):
     
             ydat,xdat = np.shape(data()[i])
             x, y, yb = np.zeros((3,ydat))
@@ -61,7 +63,10 @@ def plotting():
             axarr[0].plot(x,yb,label=labels[i])
             axarr[0].legend(loc='best')   
             
-            emission_lines(x, yb,twothet_range_Ka=[10,13])
+            twothet_Ka_deg, int_Ka, twothet_Ki_deg = emission_lines(x, yb,twothet_range_Ka=[10,13])
+            axarr[0].vlines(twothet_Ka_deg,0,int_Ka, colors='k', linestyles='solid')
+            axarr[0].vlines((twothet_Ka_deg+twothet_Ki_deg)/2,0,int_Ka, colors='k', linestyles='--')
+            axarr[0].vlines(twothet_Ki_deg,0,int_Ka, colors='r', linestyles='solid')
             
             print(labels[i])
             print('Scherrer width: {} nm'.format(schw_peakcal(x,yb)))
