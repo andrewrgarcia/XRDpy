@@ -12,7 +12,8 @@ from matplotlib.font_manager import FontProperties
 
 from XRD_functions import *
 
-'Get[/build] your own database! (A collection of XRD files in .csv format)'
+'''Get your own database! mine is confidential ha!
+(A collection of XRD files in .csv format)'''
 from XRD_mydatabase import csvfiles, labels_for_csvfiles
 
 def data():

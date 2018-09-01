@@ -46,28 +46,6 @@ for i in range(len_lmi):
     xi_lm [i] = xi[locmax_index[0][i]] 
     ybi_lm [i] = ybi_t0[locmax_index[0][i]] 
 
-#print(xi_lm)
-print("")
-
-plt.figure(1)
-plt.plot(xi,yi,color='darkorange',label='not treated')
-plt.plot(xi,ybi,color='navy',label='subtracted background')
-
-plt.title(name[:-4])
-plt.xlabel(r'$2\theta$ / deg')
-plt.ylabel('Intensity / a.u.')
-plt.legend(loc='best')
-
-plt.figure(2)
-plt.plot(xi,ybi_t0,color='b',label='smoothed plot for Kbeta analysis')
-plt.plot(xi_lm,ybi_lm,'ro',label='local maxima')
-
-
-plt.title(name[:-4])
-plt.xlabel(r'$2\theta$ / deg')
-plt.ylabel('Intensity / a.u.')
-plt.legend(loc='best')
-
 for i in range(len_lmi):
     
     Kbeta = emission_lines_plt(xi_lm, ybi_lm,twothet_range_Ka=[xi_lm[i]-0.1,xi_lm[i]+0.1],plt='n')
@@ -86,17 +64,32 @@ for i in range(len_lmi):
                k2+=1
         k+=1
 
-plt.figure(3)
-
-plt.plot(xi,ybi_t,color='navy',label=r'subtracted peaks from $K_\beta$ emission')
-
-
+plt.figure(1)
+plt.plot(xi,yi,color='darkorange',label='not treated')
+plt.plot(xi,ybi,color='navy',label='subtracted background')
 
 plt.title(name[:-4])
 plt.xlabel(r'$2\theta$ / deg')
 plt.ylabel('Intensity / a.u.')
 plt.legend(loc='best')
 
+plt.figure(2)
+plt.plot(xi,ybi_t0,color='b',label='smoothed plot for Kbeta analysis')
+plt.plot(xi_lm,ybi_lm,'ro',label='local maxima')
+
+plt.title(name[:-4])
+plt.xlabel(r'$2\theta$ / deg')
+plt.ylabel('Intensity / a.u.')
+plt.legend(loc='best')
+
+plt.figure(3)
+
+plt.plot(xi,ybi_t,color='navy',label=r'subtracted peaks from $K_\beta$ emission')
+
+plt.title(name[:-4])
+plt.xlabel(r'$2\theta$ / deg')
+plt.ylabel('Intensity / a.u.')
+plt.legend(loc='best')
 
 
 #emission_lines_plt(xi, ybi,twothet_range_Ka=[17,18])
