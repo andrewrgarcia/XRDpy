@@ -9,11 +9,13 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
+from scipy.signal import argrelextrema
+
 
 from XRD_functions import *
 
 'write the name of your csv file below:'
-name = "MIL53-021ht.csv"
+name = "sample.csv"
 
 def data( filename = name ):
     
@@ -30,15 +32,63 @@ def data( filename = name ):
 
 xi=data()[0][:,0]
 yi=data()[0][:,1]
-ybi=bacsub(xi,yi,tol=1)
-plt.figure()
-#plt.plot(xi,yi,color='darkorange',label='not treated')
+ybi=bacsub(xi,yi,tol=1.00)
+
+ybi_t0=bacsub(xi,yi,tol=1.15)
+ybi_t=bacsub(xi,yi,tol=1.0)
+
+locmax_index=argrelextrema(ybi, np.greater)
+
+len_lmi = len(locmax_index[0])
+ybi_lm, xi_lm = np.zeros(len_lmi), np.zeros(len_lmi)
+
+for i in range(len_lmi):
+    xi_lm [i] = xi[locmax_index[0][i]] 
+    ybi_lm [i] = ybi_t0[locmax_index[0][i]] 
+
+#print(xi_lm)
+print("")
+
+plt.figure(1)
+plt.plot(xi,yi,color='darkorange',label='not treated')
 plt.plot(xi,ybi,color='navy',label='subtracted background')
 
-emission_lines_plt(xi, ybi,twothet_range_Ka=[9,10])
-emission_lines_plt(xi, ybi,twothet_range_Ka=[10,17])
-emission_lines_plt(xi, ybi,twothet_range_Ka=[17,18])
-emission_lines_plt(xi, ybi,twothet_range_Ka=[20,30])
+plt.title(name[:-4])
+plt.xlabel(r'$2\theta$ / deg')
+plt.ylabel('Intensity / a.u.')
+plt.legend(loc='best')
+
+plt.figure(2)
+plt.plot(xi,ybi_t0,color='b',label='smoothed plot for Kbeta analysis')
+plt.plot(xi_lm,ybi_lm,'ro',label='local maxima')
+
+
+plt.title(name[:-4])
+plt.xlabel(r'$2\theta$ / deg')
+plt.ylabel('Intensity / a.u.')
+plt.legend(loc='best')
+
+for i in range(len_lmi):
+    
+    Kbeta = emission_lines_plt(xi_lm, ybi_lm,twothet_range_Ka=[xi_lm[i]-0.1,xi_lm[i]+0.1],plt='n')
+#    print(Kbetapeak)    
+    
+    k=0
+    while k < len_lmi:
+
+        if Kbeta < (xi_lm[k] + 0.04) and Kbeta > (xi_lm[k] - 0.04):
+           print('found', xi_lm[k]) 
+           
+           k2=-20
+           while k2 < 21:
+               
+               ybi_t[list(xi).index(xi_lm[k])+k2]= 0
+               k2+=1
+        k+=1
+
+plt.figure(3)
+
+plt.plot(xi,ybi_t,color='navy',label=r'subtracted peaks from $K_\beta$ emission')
 
 
 
@@ -48,6 +98,13 @@ plt.ylabel('Intensity / a.u.')
 plt.legend(loc='best')
 
 
+
+#emission_lines_plt(xi, ybi,twothet_range_Ka=[17,18])
+#emission_lines_plt(xi, ybi,twothet_range_Ka=[20,30])
+#emission_lines_plt(xi, ybi,twothet_range_Ka=[27,27.5])
+#emission_lines_plt(xi, ybi,twothet_range_Ka=[30,40])
+
+
 import xlwings as xw
 
 def excel(x,y):
@@ -55,4 +112,4 @@ def excel(x,y):
     xw.Range((1,1)).options(transpose=True).value=x
     xw.Range((1,2)).options(transpose=True).value=y
 
-excel(xi,ybi)
+#excel(xi,ybi)

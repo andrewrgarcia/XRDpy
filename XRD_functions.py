@@ -37,15 +37,19 @@ def emission_lines(x, y, twothet_range_Ka=[10,20], lmda_Ka = 0.154,lmda_Ki=0.139
     
     return twothet_Ka_deg, int_Ka, twothet_Ki_deg
 
-def emission_lines_plt(x, y, twothet_range_Ka=[10,20], lmda_Ka = 0.154,lmda_Ki=0.139):
+def emission_lines_plt(x, y, twothet_range_Ka=[10,20], lmda_Ka = 0.154,lmda_Ki=0.139,plt='y'):
     
     twothet_Ka_deg, int_Ka, twothet_Ki_deg = emission_lines(x, y, twothet_range_Ka, lmda_Ka ,lmda_Ki)
-    
-    plt.vlines(twothet_Ka_deg,0,int_Ka, colors='k', linestyles='solid', \
-               label=r'K$\alpha$; $\theta$ = {} '.format(round(twothet_Ka_deg,2)))
-    plt.vlines((twothet_Ka_deg+twothet_Ki_deg)/2,0,int_Ka, colors='k', linestyles='--', label='')
-    plt.vlines(twothet_Ki_deg,0,int_Ka, colors='r', linestyles='solid',\
-               label=r'K$\beta$; $\theta$ = {} '.format(round(twothet_Ki_deg,2)))
+##    
+    if plt == 'y':
+        plt.vlines(twothet_Ka_deg,0,int_Ka, colors='k', linestyles='solid', \
+                   label=r'K$\alpha$; $\theta$ = {} '.format(round(twothet_Ka_deg,2)))
+        plt.vlines((twothet_Ka_deg+twothet_Ki_deg)/2,0,int_Ka, colors='k', linestyles='--', label='')
+        plt.vlines(twothet_Ki_deg,0,int_Ka, colors='r', linestyles='solid',\
+                   label=r'K$\beta$; $\theta$ = {} '.format(round(twothet_Ki_deg,2)))
+    if plt=='n':
+
+        return twothet_Ki_deg
 
 
 '''Scherrer equation'''
