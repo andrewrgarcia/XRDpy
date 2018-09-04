@@ -4,6 +4,8 @@ Created on Thu Feb  8 22:16:03 2018
 
 @author: garci
 """
+'''XRD.py - A program for X-Ray Diffraction (XRD) pattern analysis using Python
+Andrew Garcia, 2018'''
 
 import csv
 import numpy as np
@@ -12,8 +14,8 @@ from matplotlib.font_manager import FontProperties
 
 from XRD_functions import *
 
-'''Get your own database! mine is confidential ha!
-(A collection of XRD files in .csv format)'''
+'''Get your own database! ha!
+(You may start by cloning the template XRD_database_template.py)'''
 from XRD_mydatabase import csvfiles, labels_for_csvfiles
 
 def data():

@@ -34,6 +34,9 @@ xi=data()[0][:,0]
 yi=data()[0][:,1]
 ybi=bacsub(xi,yi,tol=1.00)
 
+
+
+'THIS CODE BLOCK: data treatment for plots #2 and #3, subtraction of extraneous peaks'
 ybi_t0=bacsub(xi,yi,tol=1.15)
 ybi_t=bacsub(xi,yi,tol=1.0)
 
@@ -63,7 +66,10 @@ for i in range(len_lmi):
                ybi_t[list(xi).index(xi_lm[k])+k2]= 0
                k2+=1
         k+=1
+        
+'END CODE BLOCK'
 
+'Plot #1'
 plt.figure(1)
 plt.plot(xi,yi,color='darkorange',label='not treated')
 plt.plot(xi,ybi,color='navy',label='subtracted background')
@@ -73,6 +79,7 @@ plt.xlabel(r'$2\theta$ / deg')
 plt.ylabel('Intensity / a.u.')
 plt.legend(loc='best')
 
+'Plot #2'
 plt.figure(2)
 plt.plot(xi,ybi_t0,color='b',label='smoothed plot for Kbeta analysis')
 plt.plot(xi_lm,ybi_lm,'ro',label='local maxima')
@@ -82,6 +89,7 @@ plt.xlabel(r'$2\theta$ / deg')
 plt.ylabel('Intensity / a.u.')
 plt.legend(loc='best')
 
+'Plot #3'
 plt.figure(3)
 
 plt.plot(xi,ybi_t,color='navy',label=r'subtracted peaks from $K_\beta$ emission')
@@ -97,6 +105,8 @@ plt.legend(loc='best')
 #emission_lines_plt(xi, ybi,twothet_range_Ka=[27,27.5])
 #emission_lines_plt(xi, ybi,twothet_range_Ka=[30,40])
 
+
+'EXCEL'
 
 import xlwings as xw
 
