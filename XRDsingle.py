@@ -15,8 +15,7 @@ from scipy.signal import argrelextrema
 from XRD_functions import *
 
 'write the name of your csv file below:'
-#name = "MIL53-022as.csv"
-name = "BASOLITEA100-as.csv"
+name = "sample.csv"
 
 def data( filename = name ):
     
