@@ -15,7 +15,8 @@ from scipy.signal import argrelextrema
 from XRD_functions import *
 
 'write the name of your csv file below:'
-name = "sample.csv"
+#name = "MIL53-022as.csv"
+name = "BASOLITEA100-as.csv"
 
 def data( filename = name ):
     
@@ -37,7 +38,7 @@ ybi=bacsub(xi,yi,tol=1.00)
 
 
 'THIS CODE BLOCK: data treatment for plots #2 and #3, subtraction of extraneous peaks'
-ybi_t0=bacsub(xi,yi,tol=1.15)
+ybi_t0=bacsub(xi,yi,tol=1.4)
 ybi_t=bacsub(xi,yi,tol=1.0)
 
 locmax_index=argrelextrema(ybi, np.greater)
@@ -70,7 +71,7 @@ for i in range(len_lmi):
 'END CODE BLOCK'
 
 'Plot #1'
-plt.figure(1)
+plt.figure()
 plt.plot(xi,yi,color='darkorange',label='not treated')
 plt.plot(xi,ybi,color='navy',label='subtracted background')
 
@@ -80,7 +81,7 @@ plt.ylabel('Intensity / a.u.')
 plt.legend(loc='best')
 
 'Plot #2'
-plt.figure(2)
+plt.figure()
 plt.plot(xi,ybi_t0,color='b',label='smoothed plot for Kbeta analysis')
 plt.plot(xi_lm,ybi_lm,'ro',label='local maxima')
 
@@ -90,7 +91,7 @@ plt.ylabel('Intensity / a.u.')
 plt.legend(loc='best')
 
 'Plot #3'
-plt.figure(3)
+plt.figure()
 
 plt.plot(xi,ybi_t,color='navy',label=r'subtracted peaks from $K_\beta$ emission')
 
