@@ -6,9 +6,9 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 - [x] Import XRD data expressed as *.csv* files:
 
-- [x] Background Subtraction on XRD data
+- [x] Background subtraction on XRD data
 
-- [x] Data smoothing (with an n-point moving average)
+- [x] Data smoothing (n-point moving average)
 
 - [x] *Plots*: one main graph with all XRD spectra in interest and 'x' additional smaller graphs serving as a comparison to the first graph (can be customized by changing the size of the *for loops*)
 
@@ -21,7 +21,7 @@ Scherrer equation [displayed on shell].
 
 - [x] Import XRD file expressed as *.csv* files:
 
-- [x] Background Subtraction on XRD data
+- [x] Background subtraction on XRD data
 
 - [x] *Plots*: background subtracted and non-subtracted shown in figure
 
@@ -31,9 +31,9 @@ Scherrer equation [displayed on shell].
 
 - [x] Interplanar spacing calculation by Braggs' law
 
-- [] Determination of hkl indices and lattice parameters for powder patterns
+- [ ] Determination of hkl indices and lattice parameters for powder patterns
 
-- []  ~~If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak~~
+- [ ]  ~~If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak~~
 
 
 
