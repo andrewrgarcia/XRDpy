@@ -1,39 +1,41 @@
 # X-Ray Diffraction (XRD) analysis with Python
-> ### Andrew Garcia, 2018
+#### Andrew Garcia, 2018
 
 ## XRD.py [and XRD_functions.py]
-XRD.py integrates the XRD_functions.py script in order to do the following:
+XRD.py integrates the XRD_functions.py script. Capabilities:
 
-* Take XRD data expressed as *.csv* files:
+- [x] Import XRD data expressed as *.csv* files:
 
-* Perform background subtraction algorithms on XRD data
+- [x] Background Subtraction on XRD data
 
-* Data smoothing (with an n-point moving average) [if desired]
+- [x] Data smoothing (with an n-point moving average)
 
-* Plot one main graph with all XRD spectra in interest and 3 additional smaller graphs serving as a comparison to the first graph (can be customized by changing the size of the *for loops*)
+- [x] *Plots*: one main graph with all XRD spectra in interest and 'x' additional smaller graphs serving as a comparison to the first graph (can be customized by changing the size of the *for loops*)
 
-* Calculate crystallite size for each of the XRD spectrum
-using the Scherrer equation and displays them on the shell.
+- [x] Crystallite size calculation for each XRD file
+Scherrer equation [displayed on shell].
 
-* Find location of emission peaks corresponding to secondary radiation sources (with K_alpha peak as a reference)
+- [x] Emission peaks: Location of emission peaks corresponding to secondary radiation sources (with K_alpha peak as a reference)
 
 ## XRDsingle.py
 
-* Takes a single XRD file expressed as *.csv* files:
+- [x] Import XRD file expressed as *.csv* files:
 
-* Performs a background subtraction algorithm on XRD data
+- [x] Background Subtraction on XRD data
 
-* Plots subtracted and non-subtracted XRD data in Python
+- [x] *Plots*: background subtracted and non-subtracted shown in figure
 
-* Creates *.csv* file of background-subtracted version of XRD data, which can be open and edited in Excel (if Excel is your thing)
+- [x] Creates *.csv* file of background-subtracted version of XRD data. .csv files can be opened and edited in Excel (if Excel is your thing)
 
 ## indexing.py
 
-* Calculates interplanar spacing
+- [x] Interplanar spacing calculation by Braggs' law
 
-* ~~If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak~~
+- [] Determination of hkl indices and lattice parameters for powder patterns
 
-* Adding capabilities to determine hkl indices and lattice parameters for powder patterns - in progress
+- []  ~~If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak~~
+
+
 
 ## LICENSE file excerpt -see: LICENSE file in this repository-
 

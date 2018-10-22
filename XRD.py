@@ -54,12 +54,13 @@ def plotting():
     
     
 
-    for i in range(0,43):
+    for i in range(0,46):
            
         
         I=['empty']*5
-        I[0]=list.index(labels,'Commercial M_as')
-        I[1]=list.index(labels,'M 28_as')
+#        I[0]=list.index(labels,'Comm M_ht')
+#        I[1]=list.index(labels,'M 1')
+        I[2]=list.index(labels,'M 28_ht')
 #        I[2]=list.index(labels,'M 1')
                 
         if any([ i==I[0], i==I[1], i==I[2], i==I[3], i==I[4] ]):
@@ -90,7 +91,7 @@ def plotting():
     
     
     i2=list.index(labels,'M 1')
-    i1=list.index(labels,'M 22_as')
+    i1=list.index(labels,'Comm M_ht')
     ind_items = [i1,i2]
     
     ix=1
