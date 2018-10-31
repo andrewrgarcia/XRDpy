@@ -115,4 +115,4 @@ def excel(x,y):
     xw.Range((1,1)).options(transpose=True).value=x
     xw.Range((1,2)).options(transpose=True).value=y
 
-#excel(xi,ybi)
+excel(xi,ybi_t)

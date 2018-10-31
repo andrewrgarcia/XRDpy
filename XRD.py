@@ -58,10 +58,15 @@ def plotting():
            
         
         I=['empty']*5
-#        I[0]=list.index(labels,'Comm M_ht')
+#        I[0]=list.index(labels,'Comm M')
 #        I[1]=list.index(labels,'M 1')
-        I[2]=list.index(labels,'M 28_ht')
+#        I[2]=list.index(labels,'M 28')
 #        I[2]=list.index(labels,'M 1')
+        
+#        I[0]=list.index(labels,'M 21 as')
+        I[1]=list.index(labels,'M 28 as')
+        I[0]=list.index(labels,'M 29 as')
+
                 
         if any([ i==I[0], i==I[1], i==I[2], i==I[3], i==I[4] ]):
 
@@ -90,8 +95,8 @@ def plotting():
             print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
     
     
-    i2=list.index(labels,'M 1')
-    i1=list.index(labels,'Comm M_ht')
+    i2=list.index(labels,'M 22 as')
+    i1=list.index(labels,'M 28 as')
     ind_items = [i1,i2]
     
     ix=1
