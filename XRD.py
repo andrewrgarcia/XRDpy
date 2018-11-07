@@ -56,8 +56,10 @@ def plotting(nplots=3,xax=''):
 #        f, axarr = plt.subplots(nplots, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
     else:
         f, axarr = plt.subplots(nplots, sharex=True)
+        
 
-    for i in range(0,46):
+
+    for i in range(0,100):
            
         
         I=['empty']*5
@@ -66,34 +68,36 @@ def plotting(nplots=3,xax=''):
 #        I[2]=list.index(labels,'M 28')
 #        I[2]=list.index(labels,'M 1')
         
-        
-        I[0]=list.index(labels,'M 21 as')
+#        I[0]=list.index(labels,'M 21 as')
 #        I[0]=list.index(labels,'M 28 as')
-        I[1]=list.index(labels,'M 29 as')        
-        I[2]=list.index(labels,'M B2 as')
-
+        I[1]=list.index(labels,'M 29 (ground on M)')        
+#        I[2]=list.index(labels,'M B2 as (ground)')
 
                 
         if any([ i==I[0], i==I[1], i==I[2], i==I[3], i==I[4] ]):
-
 
     
             ydat,xdat = np.shape(data()[i])
             x, y, yb = np.zeros((3,ydat))
             x, y = data()[i][:,0], data()[i][:,1]
             
-            yb=bacsub(x,y,tol=1.0)
+            yb=backsub(x,y,tol=1.0)
             x,yb = movnavg(x,yb)
             
+            if nplots == 1: 
+                pax = axarr
+            else:
+                pax = axarr[0]
+            
             if xax == 'braggs':
-                axarr[0].plot(braggs(x),yb,label=labels[i],color='k')
+                pax.plot(braggs(x),yb,label=labels[i],color='k')
 
             else:
-                axarr[0].plot(x,yb,label=labels[i])
+                pax.plot(x,yb,label=labels[i])
 
             
-#            axarr[0].plot(x,yb,label=labels[i],color='k')
-            axarr[0].legend(loc='best')   
+#            axarr.plot(x,yb,label=labels[i],color='k')
+            pax.legend(loc='best')   
 
             
             print(labels[i])
@@ -101,43 +105,44 @@ def plotting(nplots=3,xax=''):
             print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
     
     
-    i1=list.index(labels,'M 29 as')
-    i2=list.index(labels,'M 28 as')
-    i3=list.index(labels,'M 22 as (reference)')
-#    i3=list.index(labels,'M 1')
-
-
-    ind_items = [i1,i2,i3]
+    if nplots != 1: 
     
-    ix=1
-    for i in ind_items:
-        
-        rydat,rxdat = np.shape(data()[i])
-        rx, ry, ryb = np.zeros((3,rydat))
-        rx, ry = data()[i][:,0], data()[i][:,1]
-        ryb=bacsub(rx,ry,tol=1.0)
-        rx,ryb = movnavg(rx,ryb)
-        
-        if xax == 'braggs':
-            axarr[ix].plot(braggs(rx),braggs(ryb),label=labels[i],color='k')
-        else:
-            axarr[ix].plot(rx,ryb,label=labels[i],color='k')
-        
-#        axarr[ix].plot(rx,ryb,label=labels[i],color='k')
-        axarr[ix].legend(loc='best')
-        
-        print(labels[i])
-        print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
-        print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
-        
-        ix+=1
-        
+        i1=list.index(labels,'M 29')
+        i2=list.index(labels,'M 28')
+#        i3=list.index(labels,'M 22 as (reference)')
+        i3=list.index(labels,'M 1')
     
+    
+        ind_items = [i1,i2,i3]
+        
+        ind_items = ind_items[-(nplots-1):]
+        
+        
+        ix=1
+        for i in ind_items:
+            
+            rydat,rxdat = np.shape(data()[i])
+            rx, ry, ryb = np.zeros((3,rydat))
+            rx, ry = data()[i][:,0], data()[i][:,1]
+            ryb=backsub(rx,ry,tol=1.0)
+            rx,ryb = movnavg(rx,ryb)
+            
+            if xax == 'braggs':
+                axarr[ix].plot(braggs(rx),braggs(ryb),label=labels[i],color='k')
+            else:
+                axarr[ix].plot(rx,ryb,label=labels[i],color='k')
+            
+            axarr[ix].legend(loc='best')
+            
+            print(labels[i])
+            print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
+            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
+            
+            ix+=1
+        
         
     print('\n*Crystallite size calculated using Scherrer equation.')
-        
-#    axarr[1].set_ylim([-1000, 20000])
-#    axarr[2].set_ylim([-100, 4000])
+
 
     
     f.subplots_adjust(hspace=0)
