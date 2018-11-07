@@ -43,16 +43,19 @@ def data():
     return X
 
 
-def plotting():
+def plotting(nplots=3,xax=''):
     
     labels=labels_for_csvfiles()
     '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
     in the string form of ['xxx', ... , ...., ..., 'xxx']'''
     
+
 #    f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
-    f, axarr = plt.subplots(3, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
-    
-    
+    if nplots == 3:
+        f, axarr = plt.subplots(nplots, sharex=True)
+#        f, axarr = plt.subplots(nplots, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
+    else:
+        f, axarr = plt.subplots(nplots, sharex=True)
 
     for i in range(0,46):
            
@@ -63,15 +66,15 @@ def plotting():
 #        I[2]=list.index(labels,'M 28')
 #        I[2]=list.index(labels,'M 1')
         
-#        I[0]=list.index(labels,'M 21 as')
-        I[1]=list.index(labels,'M 28 as')
-        I[0]=list.index(labels,'M 29 as')
+        
+        I[0]=list.index(labels,'M 21 as')
+#        I[0]=list.index(labels,'M 28 as')
+        I[1]=list.index(labels,'M 29 as')        
+        I[2]=list.index(labels,'M B2 as')
+
 
                 
         if any([ i==I[0], i==I[1], i==I[2], i==I[3], i==I[4] ]):
-
-
-
 
 
     
@@ -82,22 +85,29 @@ def plotting():
             yb=bacsub(x,y,tol=1.0)
             x,yb = movnavg(x,yb)
             
-            axarr[0].plot(x,yb,label=labels[i])
+            if xax == 'braggs':
+                axarr[0].plot(braggs(x),yb,label=labels[i],color='k')
+
+            else:
+                axarr[0].plot(x,yb,label=labels[i])
+
+            
+#            axarr[0].plot(x,yb,label=labels[i],color='k')
             axarr[0].legend(loc='best')   
-#            axarr[0].set_xlim(8.5)
-#            twothet_Ka_deg, int_Ka, twothet_Ki_deg = emission_lines(x, yb,twothet_range_Ka=[10,13])
-#            axarr[0].vlines(twothet_Ka_deg,0,int_Ka, colors='k', linestyles='solid')
-#            axarr[0].vlines((twothet_Ka_deg+twothet_Ki_deg)/2,0,int_Ka, colors='k', linestyles='--')
-#            axarr[0].vlines(twothet_Ki_deg,0,int_Ka, colors='r', linestyles='solid')
+
             
             print(labels[i])
             print('Scherrer width: {} nm'.format(schw_peakcal(x,yb,[17,18])))
             print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
     
     
-    i2=list.index(labels,'M 22 as')
-    i1=list.index(labels,'M 28 as')
-    ind_items = [i1,i2]
+    i1=list.index(labels,'M 29 as')
+    i2=list.index(labels,'M 28 as')
+    i3=list.index(labels,'M 22 as (reference)')
+#    i3=list.index(labels,'M 1')
+
+
+    ind_items = [i1,i2,i3]
     
     ix=1
     for i in ind_items:
@@ -108,11 +118,21 @@ def plotting():
         ryb=bacsub(rx,ry,tol=1.0)
         rx,ryb = movnavg(rx,ryb)
         
-        axarr[ix].plot(rx,ryb,label=labels[i],color='k')
+        if xax == 'braggs':
+            axarr[ix].plot(braggs(rx),braggs(ryb),label=labels[i],color='k')
+        else:
+            axarr[ix].plot(rx,ryb,label=labels[i],color='k')
+        
+#        axarr[ix].plot(rx,ryb,label=labels[i],color='k')
         axarr[ix].legend(loc='best')
         
+        print(labels[i])
+        print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
+        print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
+        
         ix+=1
-
+        
+    
         
     print('\n*Crystallite size calculated using Scherrer equation.')
         
@@ -127,4 +147,4 @@ def plotting():
     plt.ylabel('Intensity / a.u.')
     
     
-plotting()
+plotting(4)

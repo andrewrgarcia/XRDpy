@@ -51,6 +51,9 @@ def emission_lines_plt(x, y, twothet_range_Ka=[10,20], lmda_Ka = 0.154,lmda_Ki=0
 
         return twothet_Ki_deg
 
+'''interplanar spacing "d_hkl" from Braggs law'''
+def braggs(twotheta,lmda=0.9):
+    return  lmda /(2*np.sin(twotheta/2))
 
 '''Scherrer equation'''
 def scherrer(K,lmda,beta,theta):
