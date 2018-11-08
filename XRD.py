@@ -48,7 +48,8 @@ def plotting(nplots=3,xax=''):
     labels=labels_for_csvfiles()
     '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
     in the string form of ['xxx', ... , ...., ..., 'xxx']'''
-
+    
+    I,ind_items = selection()
 
 #    f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
     if nplots == 3:
@@ -57,23 +58,9 @@ def plotting(nplots=3,xax=''):
     else:
         f, axarr = plt.subplots(nplots, sharex=True)
 
-
+    
 
     for i in range(0,100):
-
-
-        I=['empty']*5
-#        I[0]=list.index(labels,'Comm M')
-#        I[1]=list.index(labels,'M 1')
-#        I[2]=list.index(labels,'M 28')
-#        I[2]=list.index(labels,'M 1')
-
-#        I[0]=list.index(labels,'M 21 as')
-#        I[0]=list.index(labels,'M 28 as')
-        I[1]=list.index(labels,'M 29 (ground on M)')
-        I[2]=list.index(labels,'M B2 as (ground)')
-
-
 
         if any([ i==I[0], i==I[1], i==I[2], i==I[3], i==I[4] ]):
 
@@ -102,21 +89,11 @@ def plotting(nplots=3,xax=''):
 
 
             print(labels[i])
-#            print('Scherrer width: {} nm'.format(schw_peakcal(x,yb,[17,18])))
-#            print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
+            print('Scherrer width: {} nm'.format(schw_peakcal(x,yb,[17,18])))
+            print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
 
 
     if nplots != 1:
-
-        i1=list.index(labels,'M 29')
-        i2=list.index(labels,'M 29')
-        i3=list.index(labels,'M 28')
-#        i4=list.index(labels,'M 22 as (reference)')
-        i4=list.index(labels,'M 1')
-
-
-
-        ind_items = [i1,i2,i3,i4]
 
         ind_items = ind_items[-(nplots-1):]
 
@@ -138,8 +115,8 @@ def plotting(nplots=3,xax=''):
             axarr[ix].legend(loc='best')
 
             print(labels[i])
-#            print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
-#            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
+            print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
+            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
 
             ix+=1
 
@@ -155,4 +132,37 @@ def plotting(nplots=3,xax=''):
     plt.ylabel('Intensity / a.u.')
 
 
-plotting(4)
+
+
+
+
+
+def selection():
+    
+    '''XRD DATA IN FIRST GRAPH (OVERLAID PLOTS)'''
+    I=['empty']*5
+#    I[0]=list.index(labels,'Comm M')
+#    I[1]=list.index(labels,'M 1')
+#    I[2]=list.index(labels,'M 28')
+#    I[2]=list.index(labels,'M 1')
+#
+#    I[3]=list.index(labels,'M 21 as')
+#    I[4]=list.index(labels,'M 28 as')
+    
+    I[1]=list.index(labels,'M 29 (ground on M)')
+    I[2]=list.index(labels,'M B2 as (ground)')
+
+
+
+    '''SECOND GRAPH AND BEYOND (INDIVIDUAL GRAPHS PER PLOT)'''
+    i1=list.index(labels,'M 29')
+    i2=list.index(labels,'M 29')
+    i3=list.index(labels,'M 28')
+#        i4=list.index(labels,'M 22 as (reference)')
+    i4=list.index(labels,'M 1')
+
+    J = [i1,i2,i3,i4]
+
+    return I,J
+
+plotting(1)
