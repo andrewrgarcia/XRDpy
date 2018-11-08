@@ -10,7 +10,7 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 - [x] Data smoothing (n-point moving average)
 
-- [x] *Plots*: one main graph with all XRD spectra in interest and 'x' additional smaller graphs serving as a comparison to the first graph (can be customized by changing the size of the *for loops*)
+- [x] *Plots*: Figure generated can be customized to contain one graph with overlaid XRD plots (nplots = 1) or multiple plots in separate "n" graphs (nplots = n)
 
 - [x] Crystallite size calculation for each XRD file
 Scherrer equation [displayed on shell].
