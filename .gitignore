@@ -4,10 +4,12 @@
 _practice/
 XRD_files/
 
+
 # Python files
 mof_lattice_params.py
 indexing_old.py
 XRD_mydatabase.py
+randXRD.py
 
 # XRD files
 *.csv
