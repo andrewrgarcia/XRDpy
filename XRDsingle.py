@@ -15,7 +15,7 @@ from scipy.signal import argrelextrema
 from XRD_functions import *
 
 'write the name of your csv file below:'
-name = "sample.csv"
+name = "MIL53-022as.csv"
 
 def data( filename = name ):
     
@@ -32,13 +32,13 @@ def data( filename = name ):
 
 xi=data()[0][:,0]
 yi=data()[0][:,1]
-ybi=bacsub(xi,yi,tol=1.00)
+ybi=backsub(xi,yi,tol=1.00)
 
 
 
 'THIS CODE BLOCK: data treatment for plots #2 and #3, subtraction of extraneous peaks'
-ybi_t0=bacsub(xi,yi,tol=1.4)
-ybi_t=bacsub(xi,yi,tol=1.0)
+ybi_t0=backsub(xi,yi,tol=1.4)
+ybi_t=backsub(xi,yi,tol=1.0)
 
 locmax_index=argrelextrema(ybi, np.greater)
 

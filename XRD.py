@@ -147,22 +147,36 @@ def selection():
 #    I[2]=list.index(labels,'M 1')
 #
 #    I[3]=list.index(labels,'M 21 as')
-#    I[4]=list.index(labels,'M 28 as')
-    
-    I[1]=list.index(labels,'M 29 (ground on M)')
-    I[2]=list.index(labels,'M B2 as (ground)')
+#    I[4]=list.index(labels,'M B5 as')
+#    I[2]=list.index(labels,'M B2 as')
+    I[2]=list.index(labels,'UF2 1 as')
+    I[3]=list.index(labels,'UF1 1 as')
+#    I[1]=list.index(labels,'M-ST (simulation)')
 
 
+#    I[1]=list.index(labels,'M 29 as (ground)')
+
+#    I[1]=list.index(labels,'M 29 (ground on M)')
+#    I[2]=list.index(labels,'M B2 as (ground)')
+
+    '''---------------------------------------------------------------'''
 
     '''SECOND GRAPH AND BEYOND (INDIVIDUAL GRAPHS PER PLOT)'''
-    i1=list.index(labels,'M 29')
-    i2=list.index(labels,'M 29')
-    i3=list.index(labels,'M 28')
-#        i4=list.index(labels,'M 22 as (reference)')
-    i4=list.index(labels,'M 1')
+    
+    i1=list.index(labels,'M B4 as')
+    i2=list.index(labels,'M B3 as')
+    i3=list.index(labels,'M B2 as')
+#    i4=list.index(labels,'M 22 as (reference)')
+    
+    
+    i4=list.index(labels,'M-ST (simulation)')
+#    i4=list.index(labels,'M 1')
 
     J = [i1,i2,i3,i4]
+    
+    '''---------------------------------------------------------------'''
+
 
     return I,J
 
-plotting(1)
+plotting(2)
