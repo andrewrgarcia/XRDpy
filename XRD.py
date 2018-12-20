@@ -69,7 +69,7 @@ def plotting(nplots=3,xax=''):
             x, y, yb = np.zeros((3,ydat))
             x, y = data()[i][:,0], data()[i][:,1]
 
-            yb=backsub(x,y,tol=1.0)
+            yb=backsub(x,y,tol=1)
             x,yb = movnavg(x,yb)
 
             if nplots == 1:
@@ -139,44 +139,31 @@ def plotting(nplots=3,xax=''):
 
 def selection():
     
-    '''XRD DATA IN FIRST GRAPH (OVERLAID PLOTS)'''
+    '''FIRST GRAPH (OVERLAID PLOTS)'''
     I=['empty']*5
 #    I[0]=list.index(labels,'Comm M')
-#    I[1]=list.index(labels,'M 1')
-#    I[2]=list.index(labels,'M 28')
-#    I[2]=list.index(labels,'M 1')
-#
-#    I[3]=list.index(labels,'M 21 as')
-#    I[4]=list.index(labels,'M B5 as')
-#    I[2]=list.index(labels,'M B2 as')
-    I[2]=list.index(labels,'UF2 1 as')
-    I[3]=list.index(labels,'UF1 1 as')
-#    I[1]=list.index(labels,'M-ST (simulation)')
-
-
-#    I[1]=list.index(labels,'M 29 as (ground)')
-
-#    I[1]=list.index(labels,'M 29 (ground on M)')
-#    I[2]=list.index(labels,'M B2 as (ground)')
+    I[0]=list.index(labels,'M 28')
+    I[2]=list.index(labels,'M 29')
 
     '''---------------------------------------------------------------'''
 
     '''SECOND GRAPH AND BEYOND (INDIVIDUAL GRAPHS PER PLOT)'''
-    
-    i1=list.index(labels,'M B4 as')
-    i2=list.index(labels,'M B3 as')
-    i3=list.index(labels,'M B2 as')
+    i4=list.index(labels,'M 21 as')
+
+    i2=list.index(labels,'M 28 as')
+    i1=list.index(labels,'M 1')
+    i3=list.index(labels,'M 29 as')
 #    i4=list.index(labels,'M 22 as (reference)')
     
     
-    i4=list.index(labels,'M-ST (simulation)')
-#    i4=list.index(labels,'M 1')
+    i5=list.index(labels,'M as (processed)')
+    i6=list.index(labels,'M (processed)')
 
-    J = [i1,i2,i3,i4]
+    J = [i1,i2,i3,i4,i5,i6]
     
     '''---------------------------------------------------------------'''
 
 
     return I,J
 
-plotting(2)
+plotting(7)
