@@ -37,7 +37,7 @@ def data(index_file):
 
 
 
-def plotting(nplots=3,xax=''):
+def plotting(nplots=3,xaxis_units='braggs'):
 
     labels=labels_for_csvfiles()
     '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
@@ -75,8 +75,8 @@ def plotting(nplots=3,xax=''):
             else:
                 pax = axarr[0]
 
-            if xax == 'braggs':
-                pax.plot(braggs(x),yb,label=labels[i],color='k')
+            if xaxis_units == 'braggs':
+                pax.plot(braggs(x),yb,label=labels[i])
 
             else:
                 pax.plot(x,yb,label=labels[i])
@@ -87,8 +87,8 @@ def plotting(nplots=3,xax=''):
 
 
             print(labels[i])
-            print('Scherrer width: {} nm'.format(schw_peakcal(x,yb,[17,18])))
-            print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
+#            print('Scherrer width: {} nm'.format(schw_peakcal(x,yb,[17,18])))
+#            print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
 
 
     if nplots != 1:
@@ -109,15 +109,17 @@ def plotting(nplots=3,xax=''):
             ryb=backsub(rx,ry,tol=1.0)
             rx,ryb = movnavg(rx,ryb)
 
-            if xax == 'braggs':
-                axarr[ix].plot(braggs(rx),braggs(ryb),label=labels[i],color='k')
+            if xaxis_units == 'braggs':
+#                axarr[ix].plot(braggs(rx),braggs(ryb),label=labels[i],color='k')
+                axarr[ix].plot(braggs(rx),ryb,label=labels[i],color='k')
+
             else:
                 axarr[ix].plot(rx,ryb,label=labels[i],color='k')
 
             axarr[ix].legend(loc='best')
 
             print(labels[i])
-            print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
+#            print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
 #            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
 
             ix+=1
@@ -130,7 +132,11 @@ def plotting(nplots=3,xax=''):
     f.subplots_adjust(hspace=0)
     plt.setp([a.get_xticklabels() for a in f.axes[:-1]], visible=False)
 
-    plt.xlabel(r'$2\theta$ / deg')
+    if xaxis_units == 'braggs':
+        plt.xlabel(r'Interplanar lattice spacing / $\AA$')
+    else:
+        plt.xlabel(r'$2\theta$ / deg')
+
     plt.ylabel('Intensity / a.u.')
 
 
@@ -144,28 +150,40 @@ def selection():
     '''FIRST GRAPH (OVERLAID PLOTS)'''
     I=['empty']*5
 #    I[0]=list.index(labels,'Comm M')
-    I[0]=list.index(labels,'M 28')
-    I[2]=list.index(labels,'M 29')
+#    I[0]=list.index(labels,'M 28')
+    I[2]=list.index(labels,'example4')
+    I[0]=list.index(labels,'example5')
+#    I[2]=list.index(labels,'example5')
+
 #
     '''---------------------------------------------------------------'''
 
     '''SECOND GRAPH AND BEYOND (INDIVIDUAL GRAPHS PER PLOT)'''
-    i4=list.index(labels,'M 21 as')
-
-    i2=list.index(labels,'M 28 as')
-    i1=list.index(labels,'M 1')
-    i3=list.index(labels,'M 29 as')
-#    i4=list.index(labels,'M 22 as (reference)')
+#    i4=list.index(labels,'M 21 as')
+#
+#    i2=list.index(labels,'M 28 as')
+#    i1=list.index(labels,'M 1')
+#    i3=list.index(labels,'M 29 as')
+##    i4=list.index(labels,'M 22 as (reference)')
+#    
+##    i5=list.index(labels,'M 1')
+##    i6=list.index(labels,'M 1')
+#    i5=list.index(labels,'M as (processed)')
+#    i6=list.index(labels,'M (processed)')
+#
+#    J = [i1,i2,i3,i4,i5,i6]
     
-    
-    i5=list.index(labels,'M as (processed)')
-    i6=list.index(labels,'M (processed)')
+    i4=list.index(labels,'example5')
 
-    J = [i1,i2,i3,i4,i5,i6]
+    i2=list.index(labels,'example3')
+    i1=list.index(labels,'example2')
+    i3=list.index(labels,'example4')
+    J = [i1,i2,i3,i4]
     
     '''---------------------------------------------------------------'''
 
 
     return I,J
 
-plotting(7)
+#plotting(7,'')
+plotting(5,'braggs')

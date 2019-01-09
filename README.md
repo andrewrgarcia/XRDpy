@@ -4,13 +4,15 @@
 ## XRD.py [and XRD_functions.py]
 XRD.py integrates the XRD_functions.py script. Capabilities:
 
-- [x] Import XRD data expressed as *.csv* files:
+- [x] Import XRD data expressed as *.csv* files. Major improvement in csvfiles loading algorithm (processes everything in less than a couple of seconds):
 
 - [x] Background subtraction on XRD data
 
 - [x] Data smoothing (n-point moving average)
 
 - [x] *Plots*: Figure generated can be customized to contain one graph with overlaid XRD plots (nplots = 1) or multiple plots in separate "n" graphs (nplots = n)
+
+- [x] Ordinate units: 2-theta, degrees (xaxis_units = '') or interplanar spacing, Angstroms (xaxis_units = 'braggs')
 
 - [x] Crystallite size calculation for each XRD file
 Scherrer equation [displayed on shell].
@@ -33,7 +35,7 @@ Scherrer equation [displayed on shell].
 
 - [ ] Determination of hkl indices and lattice parameters for powder patterns
 
-- [ ]  ~~If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak~~
+- [ ]  ~~If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak [HARD]~~
 
 
 

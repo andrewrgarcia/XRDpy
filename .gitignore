@@ -12,6 +12,8 @@ indexing_old.py
 XRD_mydatabase.py
 randXRD.py
 
+untitled1.py
+
 # XRD files
 *.csv
 *.xrdml
