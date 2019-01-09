@@ -21,26 +21,20 @@ from XRD_mydatabase import csvfiles, labels_for_csvfiles
 
 labels= labels_for_csvfiles()
 
-def data():
-    '''csvfiles: returns vector of .csv file names in the string form of
-    [" sample_1 .csv ", ... , ...., ..., " sample_N .csv "]'''
-    filename=csvfiles()
 
+def data(index_file):
+    '''csvfiles: vector of .csv file NAMES in the string form of
+    [ 'sample_1 .csv ', .... , 'sample_N .csv'] '''
+    
+    filename=csvfiles()[index_file]
     '''if the csv files are in a subfolder to this script's, specify path'''
     fname_path='XRD_files/'
 
+    with open( fname_path+filename , 'r') as f:
+        x = list(csv.reader(f, delimiter=","))
 
-    M=len(filename)
-    X = [[]]*M
+    return np.array(x[1:], dtype=np.float)
 
-    for i in range(M):
-        with open( fname_path+filename[i] , 'r') as f:
-            X[i] = list(csv.reader(f, delimiter=","))
-
-    for i in range(M):
-            X[i] = np.array(X[i][1:], dtype=np.float)
-
-    return X
 
 
 def plotting(nplots=3,xax=''):
@@ -65,9 +59,13 @@ def plotting(nplots=3,xax=''):
         if any([ i==I[0], i==I[1], i==I[2], i==I[3], i==I[4] ]):
 
 
-            ydat,xdat = np.shape(data()[i])
+#            ydat,xdat = np.shape(data()[i])
+            ydat,xdat = np.shape(data(i))
+
             x, y, yb = np.zeros((3,ydat))
-            x, y = data()[i][:,0], data()[i][:,1]
+#            x, y = data()[i][:,0], data()[i][:,1]
+            x, y = data(i)[:,0], data(i)[:,1]
+
 
             yb=backsub(x,y,tol=1)
             x,yb = movnavg(x,yb)
@@ -101,9 +99,13 @@ def plotting(nplots=3,xax=''):
         ix=1
         for i in ind_items:
 
-            rydat,rxdat = np.shape(data()[i])
+#            rydat,rxdat = np.shape(data()[i])
+            rydat,rxdat = np.shape(data(i))
+
             rx, ry, ryb = np.zeros((3,rydat))
-            rx, ry = data()[i][:,0], data()[i][:,1]
+#            rx, ry = data()[i][:,0], data()[i][:,1]
+            rx, ry = data(i)[:,0], data(i)[:,1]
+
             ryb=backsub(rx,ry,tol=1.0)
             rx,ryb = movnavg(rx,ryb)
 
@@ -116,7 +118,7 @@ def plotting(nplots=3,xax=''):
 
             print(labels[i])
             print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
-            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
+#            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
 
             ix+=1
 
@@ -144,7 +146,7 @@ def selection():
 #    I[0]=list.index(labels,'Comm M')
     I[0]=list.index(labels,'M 28')
     I[2]=list.index(labels,'M 29')
-
+#
     '''---------------------------------------------------------------'''
 
     '''SECOND GRAPH AND BEYOND (INDIVIDUAL GRAPHS PER PLOT)'''
