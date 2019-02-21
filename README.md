@@ -12,13 +12,13 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 - [x] *Plots*: Figure generated can be customized to contain one graph with overlaid XRD plots (nplots = 1) or multiple plots in separate "n" graphs (nplots = n)
 
-Degrees (2-Theta) x-axis
+*Degrees (2-Theta) x-axis*
 
-![Screenshot](XRD_Figure_1.png)
+![Screenshot](XRD_Figure_1.png = 20x)
 
-Interplanar lattice spacing (A) x-axis
+*Interplanar lattice spacing (A) x-axis*
 
-![Screenshot](XRD_Figure_2.png)
+![Screenshot](XRD_Figure_2.png = 20x)
 
 
 - [x] Ordinate units: 2-theta, degrees (xaxis_units = '') or interplanar spacing, Angstroms (xaxis_units = 'braggs')
@@ -36,7 +36,7 @@ Scherrer equation [displayed on shell].
 
 - [x] *Plots*: background subtracted and non-subtracted shown in figure
 
-![Screenshot](XRDsingle_Figure_1.png)
+![Screenshot](XRDsingle_Figure_1.png = 20x)
 
 - [x] Creates *.csv* file of background-subtracted version of XRD data. .csv files can be opened and edited in Excel (if Excel is your thing)
 
