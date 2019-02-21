@@ -36,7 +36,7 @@ Scherrer equation [displayed on shell].
 
 - [x] *Plots*: background subtracted and non-subtracted shown in figure
 
-![Screenshot](XRDsingle_Figure_1.png =20x)
+<img src="XRDsingle_Figure_1.png" alt="drawing" width="350"/>
 
 - [x] Creates *.csv* file of background-subtracted version of XRD data. .csv files can be opened and edited in Excel (if Excel is your thing)
 
