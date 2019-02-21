@@ -1,5 +1,6 @@
 ## Ignore files ["Do not ignore files" are at the bottom]
 
+__pycache__
 # folders
 _practice/
 XRD_files/
@@ -11,6 +12,7 @@ mof_lattice_params.py
 indexing_old.py
 XRD_mydatabase.py
 randXRD.py
+lattice_mismatch.py
 
 untitled1.py
 

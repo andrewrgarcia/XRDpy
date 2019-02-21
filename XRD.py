@@ -177,5 +177,5 @@ def selection():
 
     return I,J
 
-#plotting(7,'')
+plotting(7,'')
 plotting(7,'braggs')
