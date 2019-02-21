@@ -14,7 +14,7 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 *Degrees (2-Theta) x-axis*
 
-![Screenshot](XRD_Figure_1.png){:height="36px" width="36px"}
+![Screenshot](XRD_Figure_1.png){:height="30px" width="10px"}
 
 *Interplanar lattice spacing (A) x-axis*
 
