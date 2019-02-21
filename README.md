@@ -14,14 +14,11 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 *Degrees (2-Theta) x-axis*
 
-<img src="XRD_Figure_1.png" alt="drawing" width="400"/>
-
-
-![Screenshot](XRD_Figure_1.png){:height="30px" width="10px"}
+<img src="XRD_Figure_1.png" alt="drawing" width="350"/>
 
 *Interplanar lattice spacing (A) x-axis*
 
-![Screenshot](XRD_Figure_2.png =20x)
+<img src="XRD_Figure_2.png" alt="drawing" width="350"/>
 
 
 - [x] Ordinate units: 2-theta, degrees (xaxis_units = '') or interplanar spacing, Angstroms (xaxis_units = 'braggs')
