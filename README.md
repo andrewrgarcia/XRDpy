@@ -13,7 +13,8 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 - [x] *Plots*: Figure generated can be customized to contain one graph with overlaid XRD plots (nplots = 1) or multiple plots in separate "n" graphs (nplots = n)
 
 *Degrees (2-Theta) x-axis*
-<img src="XRD_Figure_1.png" alt="drawing" width="200"/>
+
+<img src="XRD_Figure_1.png" alt="drawing" width="400"/>
 
 
 ![Screenshot](XRD_Figure_1.png){:height="30px" width="10px"}
