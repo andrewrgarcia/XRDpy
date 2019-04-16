@@ -1,6 +1,6 @@
 # X-Ray Diffraction (XRD) analysis with Python
 ## Andrew Garcia, 2018
-## (LICENSE file excerpt -see: LICENSE file in this repository-)
+#### (LICENSE file excerpt -see: LICENSE file in this repository-)
 
    Copyright 2018 Andrew R Garcia
 
