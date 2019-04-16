@@ -14,11 +14,11 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 - [x] User-friendly data selection for plots in overlaid and individual charts
 
-<img src="XRD_datasel.png" alt="drawing" width="500"/>
+<img src="XRD_datasel.png" alt="drawing" width="650"/>
 
 - [x] Ordinate units: **degrees**, 2-theta (xaxis_units = '') or **interplanar spacing**, Angstroms (xaxis_units = 'braggs')
 
-<img src="XRD_Figure_1.png" alt="drawing" width="350"/><img src="XRD_Figure_2.png" alt="drawing" width="360"/>
+<img src="XRD_Figure_1.png" alt="drawing" width="350"/><img src="XRD_Figure_2.png" alt="drawing" width="370"/>
 
 
 - [x] Crystallite size calculation for each XRD file
