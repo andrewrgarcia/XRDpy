@@ -29,7 +29,7 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 - [x] User-friendly data selection for plots in overlaid and individual charts
 
-<img src="XRD_datasel.png" alt="drawing" width="400"/>
+<img src="XRD_datasel.png" alt="drawing" width="500"/>
 
 - [x] Ordinate units: **degrees**, 2-theta (xaxis_units = '') or **interplanar spacing**, Angstroms (xaxis_units = 'braggs')
 
