@@ -33,7 +33,7 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 - [x] Ordinate units: **degrees**, 2-theta (xaxis_units = '') or **interplanar spacing**, Angstroms (xaxis_units = 'braggs')
 
-<img src="XRD_Figure_1.png" alt="drawing" width="350"/><img src="XRD_Figure_2.png" alt="drawing" width="370"/>
+<img src="XRD_angle.png" alt="drawing" width="350"/><img src="XRD_dhkl.png" alt="drawing" width="370"/>
 
 
 - [x] Crystallite size calculation for each XRD file
