@@ -1,5 +1,20 @@
 # X-Ray Diffraction (XRD) analysis with Python
-#### Andrew Garcia, 2018
+## Andrew Garcia, 2018
+## (LICENSE file excerpt -see: LICENSE file in this repository-)
+
+   Copyright 2018 Andrew R Garcia
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 
 ## XRD.py [and XRD_functions.py]
 XRD.py integrates the XRD_functions.py script. Capabilities:
@@ -45,21 +60,3 @@ Scherrer equation [displayed on shell].
 - [ ] Determination of hkl indices and lattice parameters for powder patterns
 
 - [ ]  ~~If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak [HARD]~~
-
-
-
-## LICENSE file excerpt -see: LICENSE file in this repository-
-
-   Copyright 2018 Andrew R Garcia
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
