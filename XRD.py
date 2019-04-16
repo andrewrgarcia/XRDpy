@@ -10,6 +10,8 @@ Andrew Garcia, 2018'''
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
+from  matplotlib.pyplot import xticks
+
 from matplotlib.font_manager import FontProperties
 
 from XRD_functions import *
@@ -20,6 +22,7 @@ from XRD_mydatabase import csvfiles, labels_for_csvfiles
 
 
 labels= labels_for_csvfiles()
+
 
 
 def data(index_file):
@@ -76,10 +79,21 @@ def plotting(nplots=3,xaxis_units='braggs'):
                 pax = axarr[0]
 
             if xaxis_units == 'braggs':
-                pax.plot(braggs(x),yb,label=labels[i])
+#                pax.plot(braggs(x),yb,label=labels[i])
+                pax.plot(x,yb,label=labels[i])
+                
+                locs, tickls = xticks()
+                
+               
+                print(braggs(locs))
+                print(locs)
+                xticks(locs,braggs(locs))
+
 
             else:
                 pax.plot(x,yb,label=labels[i])
+                
+                
 
 
 #            axarr.plot(x,yb,label=labels[i],color='k')
@@ -110,8 +124,10 @@ def plotting(nplots=3,xaxis_units='braggs'):
             rx,ryb = movnavg(rx,ryb)
 
             if xaxis_units == 'braggs':
-#                axarr[ix].plot(braggs(rx),braggs(ryb),label=labels[i],color='k')
-                axarr[ix].plot(braggs(rx),ryb,label=labels[i],color='k')
+#                axarr[ix].plot(braggs(rx),ryb,label=labels[i],color='k')
+                
+                axarr[ix].plot(rx,ryb,label=labels[i],color='k')
+
 
             else:
                 axarr[ix].plot(rx,ryb,label=labels[i],color='k')
@@ -156,6 +172,7 @@ def selection():
             
             ]
     
+    
     [I.append('empty') for i in range(5)]
     
 
@@ -179,5 +196,5 @@ def selection():
 
     return I,J
 
-plotting(3,'braggs')
-plotting(3,'')
+plotting(5,'braggs')
+plotting(5,'')

@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+
 '''Local maxima finder'''
 def local_max(x,y,xrange=[12,13]):
     x1,x2=xrange
@@ -55,7 +56,23 @@ def emission_lines_plt(x, y, twothet_range_Ka=[10,20], lmda_Ka = 0.154,lmda_Ki=0
 def braggs(twotheta,lmda=1.54):
     'lambda in Angstroms'
     twothet_rad=twotheta*np.pi/180
-    return  lmda /(2*np.sin(twothet_rad/2))
+    
+#    dhkl = lmda /(2*np.sin(twothet_rad/2))
+    
+    if twothet_rad.any() < 5:
+        L =len(twotheta)
+        dhkl = np.zeros(L)
+        dhkl[0] = 'inf'
+        
+        k =1
+        while k < L:
+            dhkl[k] = lmda /(2*np.sin(twothet_rad[k]/2))
+            k+=1
+    else:
+        dhkl = lmda /(2*np.sin(twothet_rad/2))
+    
+    dhkl = np.round(dhkl,2)
+    return dhkl
 
 '''Scherrer equation'''
 def scherrer(K,lmda,beta,theta):
