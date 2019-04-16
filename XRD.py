@@ -147,29 +147,31 @@ def plotting(nplots=3,xaxis_units='braggs'):
 
 def selection():
     
-    '''FIRST GRAPH (OVERLAID PLOTS)'''
-    I=['empty']*5
-#    I[0]=list.index(labels,'Comm M')
-    I[0]=list.index(labels,'M 28')
-    I[1]=list.index(labels,'M 29')
+    '''FIRST CHART (OVERLAID PLOTS)'''
+    
+    I = [
+#            list.index(labels,'Comm M'),
+            list.index(labels,'M 28 as'),
+            list.index(labels,'M 29 as')
+            
+            ]
+    
+    [I.append('empty') for i in range(5)]
+    
 
-#
     '''---------------------------------------------------------------'''
 
-    '''SECOND GRAPH AND BEYOND (INDIVIDUAL GRAPHS PER PLOT)'''
-    i4=list.index(labels,'M 21 as')
-
-    i2=list.index(labels,'M 28 as')
-    i1=list.index(labels,'M 1')
-    i3=list.index(labels,'M 29 as')
-#    i4=list.index(labels,'M 22 as (reference)')
+    '''NEXT CHARTS BEYOND FIRST (INDIVIDUAL PLOTS PER CHART)'''
     
-#    i5=list.index(labels,'M 1')
-#    i6=list.index(labels,'M 1')
-    i5=list.index(labels,'M as (processed)')
-    i6=list.index(labels,'M (processed)')
-
-    J = [i1,i2,i3,i4,i5,i6]
+    J = [
+            list.index(labels,'M 22 as (reference)'),
+            list.index(labels,'M 1'),
+#            list.index(labels,'M 28 as'),
+#            list.index(labels,'M 29 as'),
+#            list.index(labels,'M 21 as'),
+#            list.index(labels,'M as (processed)'),
+#            list.index(labels,'M (processed)'),
+            ]
     
     
     '''---------------------------------------------------------------'''
@@ -177,5 +179,5 @@ def selection():
 
     return I,J
 
-plotting(7,'')
-plotting(7,'braggs')
+plotting(3,'braggs')
+plotting(3,'')

@@ -10,15 +10,19 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 - [x] Data smoothing (n-point moving average)
 
+- [x] User-friendly data selection for plots in overlaid and individual charts
+
+<img src="XRD_data_selection.png" alt="drawing" width="350"/>
+
 - [x] *Plots*: Figure generated can be customized to contain one graph with overlaid XRD plots (nplots = 1) or multiple plots in separate "n" graphs (nplots = n)
 
 *Degrees (2-Theta) x-axis*
 
-<img src="XRD_Figure_1.png" alt="drawing" width="350"/>
+<img src="XRD_Figure_1.png" alt="drawing" width="350"/><img src="XRD_Figure_2.png" alt="drawing" width="350"/>
 
 *Interplanar lattice spacing (A) x-axis*
 
-<img src="XRD_Figure_2.png" alt="drawing" width="350"/>
+
 
 
 - [x] Ordinate units: 2-theta, degrees (xaxis_units = '') or interplanar spacing, Angstroms (xaxis_units = 'braggs')
