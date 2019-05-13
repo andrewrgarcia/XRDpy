@@ -40,20 +40,20 @@ def data(index_file):
 
 
 
-def plotting(nplots=3,xaxis_units='braggs'):
+def plotting(xaxis_units='braggs'):
 
     labels=labels_for_csvfiles()
     '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
     in the string form of ['xxx', ... , ...., ..., 'xxx']'''
     
-    I,ind_items = selection()
+    I,ind_items, ncharts = selection()
 
 #    f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
-    if nplots == 3:
-        f, axarr = plt.subplots(nplots, sharex=True)
-#        f, axarr = plt.subplots(nplots, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
+    if ncharts == 3:
+        f, axarr = plt.subplots(ncharts, sharex=True)
+#        f, axarr = plt.subplots(ncharts, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
     else:
-        f, axarr = plt.subplots(nplots, sharex=True)
+        f, axarr = plt.subplots(ncharts, sharex=True)
 
     
 
@@ -73,7 +73,7 @@ def plotting(nplots=3,xaxis_units='braggs'):
             yb=backsub(x,y,tol=1)
             x,yb = movnavg(x,yb)
 
-            if nplots == 1:
+            if ncharts == 1:
                 pax = axarr
             else:
                 pax = axarr[0]
@@ -105,9 +105,9 @@ def plotting(nplots=3,xaxis_units='braggs'):
 #            print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
 
 
-    if nplots != 1:
+    if ncharts != 1:
 
-        ind_items = ind_items[-(nplots-1):]
+        ind_items = ind_items[-(ncharts-1):]
 
 
         ix=1
@@ -157,44 +157,43 @@ def plotting(nplots=3,xaxis_units='braggs'):
 
 
 
+from XRD_mydatabase import select
+
+#def select():
+#    
+#    '''FIRST CHART (OVERLAID PLOTS)'''
+#    
+#    oplts = [
+#            list.index(labels,'example 1'),
+#            list.index(labels,'example 2'),
+#            list.index(labels,'example 3')
+#            ]
+#    
+#    
+#    [oplts.append('empty') for i in range(5)]
+#    
+#
+#    '''---------------------------------------------------------------'''
+#
+#    '''NEXT CHARTS BEYOND FIRST (INDIVIDUAL PLOTS PER CHART)'''
+#    
+#    iplts = [
+#            list.index(labels,'example 1'),
+#            list.index(labels,'example 5')
+#            ]
+#    
+#    '''---------------------------------------------------------------'''
+#    n = 1 + len (iplts)
+#
+#    oplts,iplts,n
 
 
-
-
-def selection():
+def selection():    
     
-    '''FIRST CHART (OVERLAID PLOTS)'''
-    
-    I = [
-#            list.index(labels,'Comm M'),
-            list.index(labels,'M 28 as'),
-            list.index(labels,'M 29 as')
-            
-            ]
-    
-    
-    [I.append('empty') for i in range(5)]
-    
-
-    '''---------------------------------------------------------------'''
-
-    '''NEXT CHARTS BEYOND FIRST (INDIVIDUAL PLOTS PER CHART)'''
-    
-    J = [
-            list.index(labels,'M 22 as (reference)'),
-            list.index(labels,'M 1'),
-#            list.index(labels,'M 28 as'),
-#            list.index(labels,'M 29 as'),
-#            list.index(labels,'M 21 as'),
-#            list.index(labels,'M as (processed)'),
-#            list.index(labels,'M (processed)'),
-            ]
-    
-    
-    '''---------------------------------------------------------------'''
+    oplts,iplts,n = select()
+        
+    return oplts,iplts,n
 
 
-    return I,J
-
-plotting(5,'braggs')
-plotting(5,'')
+#plotting('braggs')
+plotting('')

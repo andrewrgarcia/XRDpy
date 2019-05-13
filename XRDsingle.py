@@ -92,7 +92,8 @@ plt.legend(loc='best')
 'Plot #3'
 plt.figure()
 
-plt.plot(xi,ybi_t,color='navy',label=r'subtracted peaks from $K_\beta$ emission')
+#plt.plot(xi,ybi_t,color='navy',label=r'subtracted peaks from $K_\beta$ emission')
+plt.plot(xi,ybi_t,color='navy')
 
 plt.title(name[:-4])
 plt.xlabel(r'$2\theta$ / deg')
