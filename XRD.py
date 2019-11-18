@@ -15,21 +15,9 @@ from matplotlib.font_manager import FontProperties
 from XRD_functions import *
 
 
-
-#from XRD_database import database, select
-'''Make your own database! ha!
-You may start by using the excel template in this repository (database_template.xlsx)
-then use this code template:'''
-#-------------------------------
-
-#import pandas
-#def database():
-##    change to your path
-#    return pandas.read_excel(r'C:\Users\garci\Dropbox (Personal)\scripts\XRD\database_template.xlsx')
-#    
-#print(database()['name'],'\n')
-
-#-------------------------------
+from XRD_database import database, select
+'''Make your own database script! ha!
+check the Jupyter notebook in this same repository for some help on that...'''
 
 
 fpath = r'C:\Users\garci\Dropbox (UFL)\Research\XRD\_files/'
@@ -55,7 +43,7 @@ def make(dbase,selectn,xaxis_units='braggs'):
     '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
     in the string form of ['xxx', ... , ...., ..., 'xxx']'''
     
-    I,ind_items, ncharts = selectn()
+    overlaid,indiv, ncharts = selectn()
 
 #    f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
     if ncharts == 3:
@@ -68,7 +56,7 @@ def make(dbase,selectn,xaxis_units='braggs'):
 
     for i in range(0,100):
 
-        if any([ i==I[0], i==I[1], i==I[2], i==I[3], i==I[4] ]):
+        if any([ i==overlaid[0], i==overlaid[1], i==overlaid[2], i==overlaid[3], i==overlaid[4] ]):
 
 
 #            ydat,xdat = np.shape(data()[i])
@@ -116,11 +104,11 @@ def make(dbase,selectn,xaxis_units='braggs'):
 
     if ncharts != 1:
 
-        ind_items = ind_items[-(ncharts-1):]
+        indiv = indiv[-(ncharts-1):]
 
 
         ix=1
-        for i in ind_items:
+        for i in indiv:
 
 #            rydat,rxdat = np.shape(data()[i])
             rydat,rxdat = np.shape(data(dbase,i))
@@ -165,45 +153,11 @@ def make(dbase,selectn,xaxis_units='braggs'):
     plt.ylabel('Intensity / a.u.')
 
 
-
-'''use this code template:'''
-#----------------------------------------------------------------------------
-
-#def select():
+#def selection():    
 #    
-#    'FIRST CHART (OVERLAID PLOTS)'
-#    labels= list(database()['name'])
-#    oplts = [
-#            list.index(labels,'example1'),
-#            list.index(labels,'example2'),
-#            list.index(labels,'example3')
-#            ]
-#    
-#    
-#    [oplts.append('empty') for i in range(5)]
-#    
-#    '---------------------------------------------------------------'
-#
-#    'NEXT CHARTS BEYOND FIRST (INDIVIDUAL PLOTS PER CHART)'
-#    
-#    iplts = [
-#            list.index(labels,'example1'),
-#            list.index(labels,'example5')
-#            ]
-#    
-#    '---------------------------------------------------------------'
-#    n = 1 + len (iplts)
-#    
+#    oplts,iplts,n = select()
+#        
 #    return oplts,iplts,n
-    
-#------------------------------------------------------------------------------
-
-def selection():    
-    
-    oplts,iplts,n = select()
-        
-    return oplts,iplts,n
 
 
-#make('braggs')
-#make(database,select,'')
+make(database,select,'')
