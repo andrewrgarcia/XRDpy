@@ -1,5 +1,6 @@
 ## Ignore files ["Do not ignore files" are at the bottom]
 
+
 __pycache__
 # folders
 _practice/
@@ -19,8 +20,6 @@ lattice_mismatch.py
 
 untitled1.py
 
-# XRD files
-*.csv
 *.xrdml
 *.xy
 
