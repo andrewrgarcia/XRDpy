@@ -16,6 +16,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
+#### Just starting? Click on the Jupyter icon for a concise how-to
+<a href="https://github.com/andrewrgarcia/xRD/blob/master/howto.ipynb"><img src="jupyter.png" alt="drawing" width="100"/></a>
+
+
 ## XRD.py [and XRD_functions.py]
 XRD.py integrates the XRD_functions.py script. Capabilities:
 
