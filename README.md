@@ -16,7 +16,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-#### Just starting? Click on the Jupyter icon for a concise how-to
+## Just starting? Code looks complex? Click on the Jupyter icon for a short how-to
 <a href="https://github.com/andrewrgarcia/xRD/blob/master/howto.ipynb"><img src="jupyter.png" alt="drawing" width="100"/></a>
 
 
