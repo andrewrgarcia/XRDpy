@@ -153,10 +153,7 @@ def make(dbase,selectn,xaxis_units='braggs'):
 
     plt.ylabel('Intensity / a.u.')
 
-import pandas
-df1 = pandas.read_csv(r'C:\Users\garci\Dropbox (Personal)\scripts\XRD\fakeXRDfiles/sample1.csv',header = None)
-print(df1)
-plot(df1[0],df1[1])
+
 #def selection():    
 #    
 #    oplts,iplts,n = select()
