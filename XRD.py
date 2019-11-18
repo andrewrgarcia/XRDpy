@@ -16,22 +16,27 @@ from matplotlib.font_manager import FontProperties
 
 from XRD_functions import *
 
-'''Get your own database! ha!
-(You may start by cloning the template XRD_database_template.py)'''
-from XRD_mydatabase import csvfiles, labels_for_csvfiles
-
-
-labels= labels_for_csvfiles()
-
+from XRD_database import database
+'''Make your own database! ha!
+You may start by using the excel template in this repository (database_template.xlsx)
+then use this code template:
+-------------------------------
+import pandas
+def database():
+    return pandas.read_excel(r'C:\((yourpath))\database.xlsx')
+    
+print(database()['name'],'\n')
+-------------------------------'''
 
 
 def data(index_file):
     '''csvfiles: vector of .csv file NAMES in the string form of
     [ 'sample_1 .csv ', .... , 'sample_N .csv'] '''
     
-    filename=csvfiles()[index_file]
-    '''if the csv files are in a subfolder to this script's, specify path'''
-    fname_path='XRD_files/'
+    filename= database()['file'][index_file]
+
+    '''specify path'''
+    fname_path=r'C:\Users\garci\Dropbox (UFL)\Research\XRD\_files/'
 
     with open( fname_path+filename , 'r') as f:
         x = list(csv.reader(f, delimiter=","))
@@ -42,7 +47,9 @@ def data(index_file):
 
 def plotting(xaxis_units='braggs'):
 
-    labels=labels_for_csvfiles()
+#    labels=labels_for_csvfiles()
+    labels=database()['name']
+
     '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
     in the string form of ['xxx', ... , ...., ..., 'xxx']'''
     
@@ -99,8 +106,8 @@ def plotting(xaxis_units='braggs'):
 #            axarr.plot(x,yb,label=labels[i],color='k')
             pax.legend(loc='best')
 
-
             print(labels[i])
+
 #            print('Scherrer width: {} nm'.format(schw_peakcal(x,yb,[17,18])))
 #            print('Intensity ratio: {} \n'.format(XRD_int_ratio(x,yb)))
 
@@ -157,36 +164,40 @@ def plotting(xaxis_units='braggs'):
 
 
 
-from XRD_mydatabase import select
+from XRD_database import select
+'''use this code template:
+----------------------------------------------------------------------------
 
-#def select():
-#    
-#    '''FIRST CHART (OVERLAID PLOTS)'''
-#    
-#    oplts = [
-#            list.index(labels,'example 1'),
-#            list.index(labels,'example 2'),
-#            list.index(labels,'example 3')
-#            ]
-#    
-#    
-#    [oplts.append('empty') for i in range(5)]
-#    
-#
-#    '''---------------------------------------------------------------'''
-#
-#    '''NEXT CHARTS BEYOND FIRST (INDIVIDUAL PLOTS PER CHART)'''
-#    
-#    iplts = [
-#            list.index(labels,'example 1'),
-#            list.index(labels,'example 5')
-#            ]
-#    
-#    '''---------------------------------------------------------------'''
-#    n = 1 + len (iplts)
-#
-#    oplts,iplts,n
+def select():
+    
+    'FIRST CHART (OVERLAID PLOTS)'
+    labels= list(database()['name'])
+    oplts = [
+            list.index(labels,'example 1'),
+            list.index(labels,'example 2'),
+            list.index(labels,'example 3')
+            ]
+    
+    
+    [oplts.append('empty') for i in range(5)]
+    
 
+    '---------------------------------------------------------------'
+
+    'NEXT CHARTS BEYOND FIRST (INDIVIDUAL PLOTS PER CHART)'
+    
+    iplts = [
+            list.index(labels,'example 1'),
+            list.index(labels,'example 5')
+            ]
+    
+    '---------------------------------------------------------------'
+    n = 1 + len (iplts)
+
+    oplts,iplts,n
+    
+------------------------------------------------------------------------------
+'''
 
 def selection():    
     

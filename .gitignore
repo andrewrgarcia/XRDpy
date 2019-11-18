@@ -11,6 +11,9 @@ XRDpy_drawing.png
 mof_lattice_params.py
 indexing_old.py
 XRD_mydatabase.py
+XRD_database.py
+XRD_database_template_old.py
+
 randXRD.py
 lattice_mismatch.py
 
@@ -35,8 +38,7 @@ untitled1.py
 #also popular extensions
 *.txt
 *.jpg
-*.xls
-*.xlsx
+
 *.rtf
 *.pdf
 
