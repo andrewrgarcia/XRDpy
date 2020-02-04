@@ -59,7 +59,7 @@ def braggs(twotheta,lmda=1.54):
     
 #    dhkl = lmda /(2*np.sin(twothet_rad/2))
     
-    if twothet_rad.any() < 5:
+    if twotheta.any() < 5:
         L =len(twotheta)
         dhkl = np.zeros(L)
         dhkl[0] = 'inf'
@@ -73,6 +73,21 @@ def braggs(twotheta,lmda=1.54):
     
     dhkl = np.round(dhkl,2)
     return dhkl
+
+def braggs_s(twotheta,lmda=1.54):
+    'lambda in Angstroms'
+    twothet_rad=twotheta*np.pi/180
+    
+    
+    if twotheta < 5:
+        dhkl = 'inf'
+    else:
+        dhkl = lmda /(2*np.sin(twothet_rad/2))
+        dhkl = np.round(dhkl,2)
+    
+
+    return dhkl
+
 
 '''Scherrer equation'''
 def scherrer(K,lmda,beta,theta):
