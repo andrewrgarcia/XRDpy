@@ -79,7 +79,8 @@ def make(dbase):
 
     overlaidvec = []
     for i in args["overlaid_split"]:
-        overlaidvec.append(start_ov[:i]+['empty']*5)
+
+        overlaidvec.append(start_ov[:i]+['empty']*(5-len(start_ov[:i]) ))
         start_ov = start_ov[i:]
 
 
