@@ -11,8 +11,24 @@ import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
 from scipy.signal import argrelextrema
 
-
 from XRD_functions import *
+
+
+import argparse
+
+ap = argparse.ArgumentParser()
+ap.add_argument("-p", "--path", \
+                default = r'C:\Users\garci\Dropbox (Personal)\scripts\XRD\fakeXRDfiles/sample1.csv',\
+                type = str, help="path of csv file")
+ap.add_argument("-o", "--overlaid", default = False, type=bool,
+                help="overlay plots")
+ap.add_argument("-xl", "--toexcel", default = False, type=bool,
+                help="made a copy of treated (e.g. background subtracted)\
+                data to Excel")
+ap.add_argument("-e", "--second_emission", default = False, type = bool,
+                help="remove secondary emission peaks (K-beta) ")
+args = vars(ap.parse_args())
+
 
 def data( path ):
     
@@ -31,13 +47,14 @@ def excel(x,y):
     xw.Range((1,1)).options(transpose=True).value=x
     xw.Range((1,2)).options(transpose=True).value=y
 
-def make0(path=r'C:\.',overlaid = False, toexcel = False, second_emission = False ):
-    xi=data(path)[0][:,0]
-    yi=data(path)[0][:,1]
+def make0():
+    
+    xi=data(args["path"])[0][:,0]
+    yi=data(args["path"])[0][:,1]
     ybi=backsub(xi,yi,tol=1.00)
     
     
-    if second_emission == True:
+    if args["second_emission"] is True:
         'THIS CODE BLOCK: data treatment for plots #2 and #3, subtraction of extraneous peaks'
         ybi_t0=backsub(xi,yi,tol=1.4)
         ybi_t=backsub(xi,yi,tol=1.0)
@@ -99,7 +116,7 @@ def make0(path=r'C:\.',overlaid = False, toexcel = False, second_emission = Fals
                 
         'END CODE BLOCK'
     
-    if overlaid == True:
+    if args["overlaid"] is True:
         'Plot #1'
         plt.figure()
         plt.plot(xi,yi,color='darkorange',label='not treated')
@@ -124,9 +141,10 @@ def make0(path=r'C:\.',overlaid = False, toexcel = False, second_emission = Fals
 
 #        plt.legend(loc='best')
 
-    if toexcel == True:
-        excel(xi,ybi_t)
-        
+    if args["toexcel"] is True:
+        excel(xi,ybi)
+    
+    plt.show()
         
 #path=r'C:\Users\garci\Dropbox (UFL)\Research\XRD\_files/sample1.csv'
-#make0(path,overlaid = False, toexcel = False, second_emission = False)
+make0()
