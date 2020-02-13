@@ -52,9 +52,13 @@ ap.add_argument("-s", "--overlaid_split", nargs = '+', type =int,
                 help="split - number of plots per overlaid chart (i.e. 2 3 for 2 in first and 3 in third overlaid chart)")
 ap.add_argument("-i", "--single", default = 'C:\...your-file.xlsx', nargs = '+',type=str,
                 help="sample names for individual plots")
-ap.add_argument("-c", "--charts", type =int,
-                help="number of charts")
+#ap.add_argument("-c", "--charts", type =int,
+#                help="number of charts")
 ap.add_argument("-u", "--units", default = '', type = str,
+                help="x axis units (type angle OR braggs)")
+ap.add_argument("-sh", "--Scherrer_len", default = False, type =bool,
+                help="Scherrer width Y / N (default False)")
+ap.add_argument("-shr", "--Scherrer_range", nargs = '+', type =float,
                 help="x axis units (type angle OR braggs)")
 args = vars(ap.parse_args())
 
@@ -67,8 +71,9 @@ def make(dbase):
     in the string form of ['xxx', ... , ...., ..., 'xxx']'''
 
     # overlaidvec,indiv, ncharts = selectn()
+    
 
-    indiv, ncharts = args["single"], args["charts"]
+    indiv, ncharts = args["single"], len(args["overlaid_split"])+len(args["single"])
 
     for i in range(len(indiv)):
         indiv[i] = labels.index(indiv[i])
@@ -82,7 +87,6 @@ def make(dbase):
 
         overlaidvec.append(start_ov[:i]+['empty']*(5-len(start_ov[:i]) ))
         start_ov = start_ov[i:]
-
 
 
     print(overlaidvec)
@@ -178,7 +182,9 @@ def make(dbase):
             axarr[ix].legend(loc='best')
 
             print(labels[i])
-#            print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[17,18])))
+            if args["Scherrer_len"] is True:
+                ls,hs=args["Scherrer_range"]
+                print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[ls,hs])))
 #            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
 
             ix+=1
