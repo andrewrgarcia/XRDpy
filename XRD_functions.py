@@ -6,6 +6,7 @@ Created on Fri Aug  3 15:06:48 2018
 """
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.optimize as optimize
 
 
 
@@ -92,46 +93,53 @@ def braggs_s(twotheta,lmda=1.54):
 '''Scherrer equation'''
 def scherrer(K,lmda,beta,theta):
 
+    print('Scherrer Width == K*lmda / (FWHM*cos(theta))')
     return K*lmda / (beta*np.cos(theta))    #tau
 
+'''Gaussian fit for FWHM'''
+def funcgauss(x,a,mean,sigma):
+    
+    return (a/(sigma*np.sqrt(2*np.pi)))*np.exp(-(x-mean)**2/(2*sigma*sigma))
 
-'''To calculate the Scherrer width for a peak lying in a specific range'''
+def gaussfit(xdata,ydata):
+    meanest = xdata[ydata.index(max(ydata))]
+    sigest = meanest - min(xdata)
+#    print('estimates',meanest,sigest)
+    popt, pcov = optimize.curve_fit(funcgauss, xdata,ydata,p0 = [1,meanest,sigest])
+    print('SCHERRER WIDTH CALCULATION')
+    print('a {} mean {} sigma {}'.format(*popt))
+#    print('pcov',pcov)
+    return popt
+    
 def schw_peakcal(x,y,xrange=[12,13]):
 
     x1,x2=xrange
-    xsearch_index=[]
+    'xseg and yseg:x and y segments of data in selected xrange'
+    xseg,yseg = [],[]
     for n in x:
         if n >= x1 and  n <= x2:
-            xsearch_index.append(list(x).index(n))
+            xseg.append(n)
+            yseg.append(y[list(x).index(n)]) 
+    
+    
+    a,mean,sigma = gaussfit(xseg,yseg)
+    ysegfit = funcgauss(np.array(xseg),a,mean,sigma)
+    
+    'FULL WIDTH AT HALF MAXIMUM'
+    print('FWHM == sigma*2*sqrt(2*ln(2))')
+    FWHM = sigma*2*np.sqrt(2*np.log(2))
 
-    max_y = 0
-    max_x = 0
-    for i in xsearch_index:
-        if y[i] > max_y:
-            max_y = y[i]
-            max_x = x[i]
+    'scherrer width peak calculations'
+    max_twotheta = xseg[list(yseg).index(max(yseg))]
 
-#    'scherrer width peak calculations'
-    max_twotheta,max_y = max_x,max_y
-
-    hm = max_y/2
     theta=max_twotheta/2
     theta=theta*np.pi/180
 
-    tol=1
-    beta_range = []
-    for i in xsearch_index:
-        if y[i] > hm :
-            beta_range.append(x[i])
 
-
-    beta_range = [max(beta_range), min(beta_range)]
-    beta = max(beta_range) - min(beta_range)
-    beta = beta*np.pi/180
-
-
-    s=scherrer(0.9,0.154,beta,theta)
-    return s
+    s=scherrer(0.9,0.154,FWHM,theta)
+    X,Y = xseg,ysegfit
+    
+    return s,X,Y
 
 
 '''Background subtraction operation:'''

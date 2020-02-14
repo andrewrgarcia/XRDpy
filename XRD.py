@@ -16,6 +16,7 @@ from matplotlib.font_manager import FontProperties
 from XRD_functions import *
 
 import pandas
+
 '''Excel database:
 see database_template.xlsx in this repository for an easy-to-edit template
 compatible with the XRD.py program'''
@@ -52,13 +53,11 @@ ap.add_argument("-s", "--overlaid_split", nargs = '+', type =int,
                 help="split - number of plots per overlaid chart (i.e. 2 3 for 2 in first and 3 in third overlaid chart)")
 ap.add_argument("-i", "--single", default = 'C:\...your-file.xlsx', nargs = '+',type=str,
                 help="sample names for individual plots")
-#ap.add_argument("-c", "--charts", type =int,
-#                help="number of charts")
 ap.add_argument("-u", "--units", default = '', type = str,
                 help="x axis units (type angle OR braggs)")
 ap.add_argument("-sh", "--Scherrer_len", default = False, type =bool,
                 help="Scherrer width Y / N (default False)")
-ap.add_argument("-shr", "--Scherrer_range", nargs = '+', type =float,
+ap.add_argument("-r", "--Scherrer_range", nargs = '+', type =float,
                 help="x axis units (type angle OR braggs)")
 args = vars(ap.parse_args())
 
@@ -160,6 +159,9 @@ def make(dbase):
         ix=1+(lovec-1) if lovec > 1 else 1
         for i in indiv:
 
+            print(labels[i])
+
+                
 #            rydat,rxdat = np.shape(data()[i])
             rydat,rxdat = np.shape(data(dbase,i))
 
@@ -169,22 +171,24 @@ def make(dbase):
 
             ryb=backsub(rx,ry,tol=1.0)
             rx,ryb = movnavg(rx,ryb)
+            
+            if args["Scherrer_len"] is True:
+                ls,hs=args["Scherrer_range"]
+                Sch,xseg,yseg = schw_peakcal(rx,ryb,[ls,hs])
+                print('Scherrer width: {} nm'.format(Sch))
 
             if args["units"] == 'braggs':
-#                axarr[ix].plot(braggs(rx),ryb,label=labels[i],color='k')
+                axarr[ix].plot(braggs(rx),ryb,label=labels[i],color='k')
 
-                axarr[ix].plot(rx,ryb,label=labels[i],color='k')
-
-
+#                axarr[ix].plot(rx,ryb,label=labels[i],color='k')
+                
             else:
                 axarr[ix].plot(rx,ryb,label=labels[i],color='k')
+                axarr[ix].plot(xseg,yseg,color='m') if args["Scherrer_len"] is True else None
 
             axarr[ix].legend(loc='best')
 
-            print(labels[i])
-            if args["Scherrer_len"] is True:
-                ls,hs=args["Scherrer_range"]
-                print('Scherrer width: {} nm'.format(schw_peakcal(rx,ryb,[ls,hs])))
+
 #            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
 
             ix+=1
