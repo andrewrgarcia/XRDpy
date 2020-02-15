@@ -97,21 +97,29 @@ def scherrer(K,lmda,beta,theta):
     return K*lmda / (beta*np.cos(theta))    #tau
 
 '''Gaussian fit for FWHM'''
-def funcgauss(x,a,mean,sigma):
+def funcgauss(x,y0,a,mean,sigma):
     
-    return (a/(sigma*np.sqrt(2*np.pi)))*np.exp(-(x-mean)**2/(2*sigma*sigma))
+    return y0+(a/(sigma*np.sqrt(2*np.pi)))*np.exp(-(x-mean)**2/(2*sigma*sigma))
+
+#def funcgauss(x,y0,a,mean,fwhm):
+
+#    return y0 + (a/(fwhm*np.sqrt(np.pi/(4*np.log(2)) )))*np.exp(-(4*np.log(2))*(x-mean)**2/(fwhm*fwhm))
+
 
 def gaussfit(xdata,ydata):
     meanest = xdata[ydata.index(max(ydata))]
     sigest = meanest - min(xdata)
 #    print('estimates',meanest,sigest)
-    popt, pcov = optimize.curve_fit(funcgauss, xdata,ydata,p0 = [1,meanest,sigest])
-    print('SCHERRER WIDTH CALCULATION')
-    print('a {} mean {} sigma {}'.format(*popt))
+    popt, pcov = optimize.curve_fit(funcgauss,xdata,ydata,p0 = [min(ydata),max(ydata),meanest,sigest])
+    print('-Gaussian fit results-')
+#    print('amplitude {}\nmean {}\nsigma {}'.format(*popt))
+    print('y-shift {}\namplitude {}\nmean {}\nsigma {}'.format(*popt))
+
+    print('covariance matrix \n{}'.format(pcov))
 #    print('pcov',pcov)
     return popt
     
-def schw_peakcal(x,y,xrange=[12,13]):
+def schw_peakcal(x,y,K,lambdaKa,xrange=[12,13]):
 
     x1,x2=xrange
     'xseg and yseg:x and y segments of data in selected xrange'
@@ -122,12 +130,13 @@ def schw_peakcal(x,y,xrange=[12,13]):
             yseg.append(y[list(x).index(n)]) 
     
     
-    a,mean,sigma = gaussfit(xseg,yseg)
-    ysegfit = funcgauss(np.array(xseg),a,mean,sigma)
+    y0,a,mean,sigma = gaussfit(xseg,yseg)
+    ysegfit = funcgauss(np.array(xseg),y0,a,mean,sigma)
     
     'FULL WIDTH AT HALF MAXIMUM'
-    print('FWHM == sigma*2*sqrt(2*ln(2))')
     FWHM = sigma*2*np.sqrt(2*np.log(2))
+    FWHM = FWHM*np.pi/180
+    print('FWHM == sigma*2*sqrt(2*ln(2)): {}'.format(FWHM))
 
     'scherrer width peak calculations'
     max_twotheta = xseg[list(yseg).index(max(yseg))]
@@ -135,12 +144,41 @@ def schw_peakcal(x,y,xrange=[12,13]):
     theta=max_twotheta/2
     theta=theta*np.pi/180
 
-
-    s=scherrer(0.9,0.154,FWHM,theta)
+    print('K (shape factor): {}\nK-alpha: {} nm \nmax 2-theta: {} degrees'.\
+          format(K,lambdaKa,max_twotheta))
+    
+    s=scherrer(K,lambdaKa,FWHM,theta)
     X,Y = xseg,ysegfit
     
     return s,X,Y
 
+def schw_peakcal_old(x,y,xrange=[12,13]):
+    x1,x2=xrange
+    xsearch_index=[]
+    for n in x:
+        if n >= x1 and  n <= x2:
+            xsearch_index.append(list(x).index(n))
+    max_y = 0
+    max_x = 0
+    for i in xsearch_index:
+        if y[i] > max_y:
+            max_y = y[i]
+            max_x = x[i]
+#    'scherrer width peak calculations'
+    max_twotheta,max_y = max_x,max_y
+    hm = max_y/2
+    theta=max_twotheta/2
+    theta=theta*np.pi/180
+
+    FWHM_range = []
+    for i in xsearch_index:
+        if y[i] > hm :
+            FWHM_range.append(x[i])
+    FWHM_range = [max(FWHM_range), min(FWHM_range)]
+    FWHM = max(FWHM_range) - min(FWHM_range)
+    FWHM = FWHM*np.pi/180
+    s=scherrer(0.9,0.154,FWHM,theta)
+    return s, np.linspace(min(FWHM_range),max(FWHM_range),10), hm*np.ones(10)
 
 '''Background subtraction operation:'''
 def backsub(xdata,ydata,tol=1):

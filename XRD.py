@@ -45,20 +45,24 @@ import argparse
 
 ap = argparse.ArgumentParser()
 
-ap.add_argument("-see", "--see_database", default = False,
+ap.add_argument("-d", "--see_database", default = False,
                 help="see database only ")
-ap.add_argument("-o", "--overlaid", default = 'C:\...your-file.xlsx', nargs = '+', type=str,
+ap.add_argument("-ka", "--K_alpha_wavelength", default = 0.154, type = float,
+                help = "wavelength of K-alpha radiation default Cu-Ka (nm)")
+ap.add_argument("-b", "--background_sub", default = True, 
+                help="background subtraction")
+ap.add_argument("-o", "--overlaid", default = -1, nargs = '+', type=str,
                 help="sample names for overlaid plots")
-ap.add_argument("-s", "--overlaid_split", nargs = '+', type =int,
+ap.add_argument("-x", "--overlaid_split", default = 1, nargs = '+', type =int,
                 help="split - number of plots per overlaid chart (i.e. 2 3 for 2 in first and 3 in third overlaid chart)")
-ap.add_argument("-i", "--single", default = 'C:\...your-file.xlsx', nargs = '+',type=str,
+ap.add_argument("-s", "--single", default = -1, nargs = '+',type=str,
                 help="sample names for individual plots")
 ap.add_argument("-u", "--units", default = '', type = str,
                 help="x axis units (type angle OR braggs)")
-ap.add_argument("-sh", "--Scherrer_len", default = False, type =bool,
-                help="Scherrer width Y / N (default False)")
-ap.add_argument("-r", "--Scherrer_range", nargs = '+', type =float,
+ap.add_argument("-r", "--Scherrer_range", default = -1, nargs = '+', type =float,
                 help="x axis units (type angle OR braggs)")
+ap.add_argument("-K", "--shape_factor_K", default = 0.9, type = float,
+                help = "for Scherrer length calculation; shape factor 'K'")
 args = vars(ap.parse_args())
 
 
@@ -71,7 +75,6 @@ def make(dbase):
 
     # overlaidvec,indiv, ncharts = selectn()
     
-
     indiv, ncharts = args["single"], len(args["overlaid_split"])+len(args["single"])
 
     for i in range(len(indiv)):
@@ -117,10 +120,12 @@ def make(dbase):
     #            x, y = data()[i][:,0], data()[i][:,1]
                 x, y = data(dbase,i)[:,0], data(dbase,i)[:,1]
 
-
-                yb=backsub(x,y,tol=1)
-                x,yb = movnavg(x,yb)
-
+                if args["background_sub"] is True:
+                    yb=backsub(x,y,tol=1)
+                    x,yb = movnavg(x,yb)
+                else:
+                    yb=y
+                    
                 if ncharts == 1:
                     pax = axarr
                 else:
@@ -139,6 +144,7 @@ def make(dbase):
 
 
                 else:
+                    
                     pax.plot(x,yb,label=labels[i])
 
     #            axarr.plot(x,yb,label=labels[i],color='k')
@@ -169,22 +175,29 @@ def make(dbase):
 #            rx, ry = data()[i][:,0], data()[i][:,1]
             rx, ry = data(dbase,i)[:,0], data(dbase,i)[:,1]
 
-            ryb=backsub(rx,ry,tol=1.0)
-            rx,ryb = movnavg(rx,ryb)
+            if args["background_sub"] is True:
+                ryb=backsub(rx,ry,tol=1.0)
+                rx,ryb = movnavg(rx,ryb)
+            else:
+                ryb=ry
+
             
-            if args["Scherrer_len"] is True:
+            if args["Scherrer_range"] is not -1:
                 ls,hs=args["Scherrer_range"]
-                Sch,xseg,yseg = schw_peakcal(rx,ryb,[ls,hs])
-                print('Scherrer width: {} nm'.format(Sch))
+                print('---CRYSTALLITE SIZE CALCULATION - SCHERRER WIDTH---')
+
+                Sch,xseg,yseg = schw_peakcal(rx,ryb,args["shape_factor_K"],\
+                                             args["K_alpha_wavelength"],[ls,hs])
+
+                print('\nSCHERRER WIDTH: {} nm'.format(Sch))
 
             if args["units"] == 'braggs':
-                axarr[ix].plot(braggs(rx),ryb,label=labels[i],color='k')
-
+                axarr[ix].plot(braggs(rx),ryb,label=labels[i]) 
 #                axarr[ix].plot(rx,ryb,label=labels[i],color='k')
                 
             else:
-                axarr[ix].plot(rx,ryb,label=labels[i],color='k')
-                axarr[ix].plot(xseg,yseg,color='m') if args["Scherrer_len"] is True else None
+                axarr[ix].plot(rx,ryb,label=labels[i]) 
+                axarr[ix].plot(xseg,yseg,color='m') if args["Scherrer_range"] is not -1 else None
 
             axarr[ix].legend(loc='best')
 
@@ -192,10 +205,6 @@ def make(dbase):
 #            print('Intensity ratio: {} \n'.format(XRD_int_ratio(rx,ryb)))
 
             ix+=1
-
-
-    print('\n*Crystallite size calculated using Scherrer equation.')
-
 
 
     f.subplots_adjust(hspace=0)
@@ -209,13 +218,91 @@ def make(dbase):
     plt.ylabel('Intensity / a.u.')
     plt.show()
 
+def make_s(dbase):
+    
+    labels=list(dbase()['name'])
+
+    '''labels_for_csvfiles: returns vector of labels chosen for each of the .csv files in csvfiles
+    in the string form of ['xxx', ... , ...., ..., 'xxx']'''
+  
+    indiv, ncharts = args["single"], len(args["single"])
+
+    for i in range(len(indiv)):
+        indiv[i] = labels.index(indiv[i])
+
+#    f, axarr = plt.subplots(4, sharex=True,gridspec_kw={'height_ratios':[3.14,1,1,1]})
+    if ncharts == 3:
+        f, axarr = plt.subplots(ncharts, sharex=True)
+#        f, axarr = plt.subplots(ncharts, sharex=True,gridspec_kw={'height_ratios':[2,1,1]})
+    else:
+        f, axarr = plt.subplots(ncharts, sharex=True)
+
+    
+    if ncharts != 1:
+
+        indiv = indiv[-(ncharts):]
+
+        ix=0
+
+        for i in indiv:
+
+            print(labels[i])
+
+                
+            rydat,rxdat = np.shape(data(dbase,i))
+
+            rx, ry, ryb = np.zeros((3,rydat))
+            rx, ry = data(dbase,i)[:,0], data(dbase,i)[:,1]
+
+            if args["background_sub"] is True:
+                ryb=backsub(rx,ry,tol=1.0)
+                rx,ryb = movnavg(rx,ryb)
+            else:
+                ryb=ry
+
+            
+            if args["Scherrer_range"] is not -1:
+                ls,hs=args["Scherrer_range"]
+                print('---CRYSTALLITE SIZE CALCULATION - SCHERRER WIDTH---')
+
+                Sch,xseg,yseg = schw_peakcal(rx,ryb,args["shape_factor_K"],\
+                                             args["K_alpha_wavelength"],[ls,hs])
+
+                print('\nSCHERRER WIDTH: {} nm'.format(Sch))
+
+            if args["units"] == 'braggs':
+                axarr[ix].plot(braggs(rx),ryb,label=labels[i]) 
+#                axarr[ix].plot(rx,ryb,label=labels[i],color='k')
+                
+            else:
+                axarr[ix].plot(rx,ryb,label=labels[i]) 
+                axarr[ix].plot(xseg,yseg,color='m') if args["Scherrer_range"] is not -1 else None
+
+            axarr[ix].legend(loc='best')
+
+
+            ix+=1
+
+
+    f.subplots_adjust(hspace=0)
+    plt.setp([a.get_xticklabels() for a in f.axes[:-1]], visible=False)
+
+    if args["units"] == 'braggs':
+        plt.xlabel(r'Interplanar lattice spacing / $\AA$')
+    else:
+        plt.xlabel(r'$2\theta$ / deg')
+
+    plt.ylabel('Intensity / a.u.')
+    plt.show()
 
 '''execution of code:
 display database alone or display database and make plots'''
-if args["see_database"] is True:
-    pandas.set_option('display.max_rows', 100)
-    print(database()['name'],'\n')
-else:
-    pandas.set_option('display.max_rows', 100)
-    print(database()['name'],'\n')
-    make(database)
+pandas.set_option('display.max_rows', 100)
+print(database()['name'],'\n')
+
+if args["see_database"] is False:
+    if args["overlaid"] is -1:
+        make_s(database)
+    else:
+        make(database)
+

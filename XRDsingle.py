@@ -18,15 +18,30 @@ import argparse
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--path", \
-                default = r'C:\Users\garci\Dropbox (Personal)\scripts\XRD\fakeXRDfiles/sample1.csv',\
-                type = str, help="path of csv file")
-ap.add_argument("-o", "--overlaid", default = False, type=bool,
-                help="overlay plots")
-ap.add_argument("-xl", "--toexcel", default = False, type=bool,
-                help="made a copy of treated (e.g. background subtracted)\
-                data to Excel")
-ap.add_argument("-e", "--second_emission", default = False, type = bool,
+                default = r'C:\Users\garci\Dropbox (Personal)\scripts\XRD\XRD-patterns-fake/',\
+                type = str, help="path where all your csv files may be. \
+                Please update the default with your common folder.")
+ap.add_argument("-s", "--file_name",\
+                default = 'sample1.csv', type = str, help = "your file's name \
+                located in the defined path")
+
+ap.add_argument("-ka", "--K_alpha_wavelength", default = 0.154, type = float,
+                help = "wavelength of K-alpha radiation default Cu-Ka (nm)")
+ap.add_argument("-se", "--second_emission", default = False, type = bool,
                 help="remove secondary emission peaks (K-beta) ")
+ap.add_argument("-kb", "--K_beta_wavelength", default = 0.139, type = float,
+                help = "wavelength of secondary emission (nm)")        
+  
+ap.add_argument("-b", "--background_sub", default = True,
+                help="background subtraction")
+ap.add_argument("-xl", "--toexcel", default = False, type=bool,
+                help="make an Excel copy of background subtracted pattern")
+                
+ap.add_argument("-r", "--Scherrer_range", default = -1, nargs = '+', type =float,
+                help="x axis units (type angle OR braggs)")
+ap.add_argument("-K", "--shape_factor_K", default = 0.9, type = float,
+                help = "for Scherrer length calculation; shape factor 'K'")
+
 args = vars(ap.parse_args())
 
 
@@ -49,8 +64,8 @@ def excel(x,y):
 
 def make0():
     
-    xi=data(args["path"])[0][:,0]
-    yi=data(args["path"])[0][:,1]
+    xi=data(args["path"]+args["file_name"])[0][:,0]
+    yi=data(args["path"]+args["file_name"])[0][:,1]
     ybi=backsub(xi,yi,tol=1.00)
     
     
@@ -70,7 +85,10 @@ def make0():
         
         for i in range(len_lmi):
             
-            Kbeta = emission_lines_plt(xi_lm, ybi_lm,twothet_range_Ka=[xi_lm[i]-0.1,xi_lm[i]+0.1],plt='n')
+            Kbeta = \
+            emission_lines_plt(xi_lm,\
+            ybi_lm,twothet_range_Ka=[xi_lm[i]-0.1,xi_lm[i]+0.1],plt='n',\
+            lmda_Ka = args["K_alpha_wavelength"],lmda_Ki=args["K_beta_wavelength"])
         #    print(Kbetapeak)    
             
             k=0
@@ -100,45 +118,39 @@ def make0():
         plt.figure()
         
         #plt.plot(xi,ybi_t,color='navy',label=r'subtracted peaks from $K_\beta$ emission')
-        plt.plot(xi,ybi_t,color='navy')
+        plt.plot(xi,ybi_t,color='C1')
         
         ###plt.title('')
         plt.xlabel(r'$2\theta$ / deg')
         plt.ylabel('Intensity / a.u.')
         plt.legend(loc='best')
-        
-        
-        #emission_lines_plt(xi, ybi,twothet_range_Ka=[17,18])
-        #emission_lines_plt(xi, ybi,twothet_range_Ka=[20,30])
-        #emission_lines_plt(xi, ybi,twothet_range_Ka=[27,27.5])
-        #emission_lines_plt(xi, ybi,twothet_range_Ka=[30,40])
 
                 
         'END CODE BLOCK'
-    
-    if args["overlaid"] is True:
-        'Plot #1'
-        plt.figure()
-        plt.plot(xi,yi,color='darkorange',label='not treated')
-        plt.plot(xi,ybi,color='navy',label='subtracted background')
         
-        ###plt.title('')
-        plt.xlabel(r'$2\theta$ / deg')
-        plt.ylabel('Intensity / a.u.')
-        plt.legend(loc='best')
+    plt.figure()
+    plt.xlabel(r'$2\theta$ / deg')
+    plt.ylabel('Intensity / a.u.')
+#    plt.legend(loc='best')
+    if args["background_sub"] is True:
+        plt.plot(xi,ybi,label='background-subtracted')
     else:
-        plt.figure()
-        plt.plot(xi,yi,color='darkorange',label='not treated')
-        ###plt.title('')
-        plt.xlabel(r'$2\theta$ / deg')
-        plt.ylabel('Intensity / a.u.')
+        plt.plot(xi,yi,label='raw pattern')
+    
+       
+    if args["Scherrer_range"] is not -1:
+        ls,hs=args["Scherrer_range"]
+        print('---CRYSTALLITE SIZE CALCULATION - SCHERRER WIDTH---')
         
-        plt.figure()
-        plt.plot(xi,ybi,color='navy',label='subtracted background')
-        ##plt.title('')
-        plt.xlabel(r'$2\theta$ / deg')
-        plt.ylabel('Intensity / a.u.')
+        if args["background_sub"] is True:
+            Sch,xseg,yseg = schw_peakcal(xi,ybi,args["shape_factor_K"],\
+                                     args["K_alpha_wavelength"],[ls,hs])
+        else:
+            Sch,xseg,yseg = schw_peakcal(xi,yi,args["shape_factor_K"],\
+                         args["K_alpha_wavelength"],[ls,hs])
+        print('\nSCHERRER WIDTH: {} nm'.format(Sch))
 
+        plt.plot(xseg,yseg,color='m')
 #        plt.legend(loc='best')
 
     if args["toexcel"] is True:
@@ -146,5 +158,4 @@ def make0():
     
     plt.show()
         
-#path=r'C:\Users\garci\Dropbox (UFL)\Research\XRD\_files/sample1.csv'
 make0()
