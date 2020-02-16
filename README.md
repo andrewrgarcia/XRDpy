@@ -17,7 +17,7 @@
    limitations under the License.
 
 ## Just starting? Code looks complex? Click on the Jupyter icon for a short how-to
-<a href="https://github.com/andrewrgarcia/xRD/blob/master/howto.ipynb"><img src="jupyter.png" alt="drawing" width="100"/></a>
+<a href="https://github.com/andrewrgarcia/xRD/blob/master/howto.ipynb"><img src="figures/jupyter.png" alt="drawing" width="100"/></a>
 
 
 ## XRD.py [and XRD_functions.py]
@@ -35,7 +35,7 @@ XRD.py integrates the XRD_functions.py script. Capabilities:
 
 - [x] Ordinate units: **degrees**, 2-theta (xaxis_units = '') or **interplanar spacing**, Angstroms (xaxis_units = 'braggs')
 
-<img src="XRD_angle.png" alt="drawing" width="350"/><img src="XRD_dhkl.png" alt="drawing" width="350"/>
+<img src="figures/XRD_angle.png" alt="drawing" width="350"/><img src="figures/XRD_dhkl.png" alt="drawing" width="350"/>
 
 
 - [x] Crystallite size calculation for each XRD file
@@ -51,7 +51,7 @@ Scherrer equation [displayed on shell].
 
 - [x] *Plots*: background subtracted and non-subtracted shown in figure
 
-<img src="XRDsingle_Figure_1.png" alt="drawing" width="350"/>
+<img src="figures/XRDsingle_Figure_1.png" alt="drawing" width="350"/>
 
 - [x] Creates *.csv* file of background-subtracted version of XRD data. .csv files can be opened and edited in Excel (if Excel is your thing)
 

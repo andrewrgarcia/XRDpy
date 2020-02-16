@@ -6,7 +6,7 @@ Created on Thu Feb  8 22:16:03 2018
 """
 '''XRD.py - A program for X-Ray Diffraction (XRD) pattern analysis using Python
 Andrew Garcia, 2018
-Last edit: 02/03/2020'''
+Last edit: 02/15/2020'''
 
 import csv
 import numpy as np
@@ -17,34 +17,15 @@ from XRD_functions import *
 
 import pandas
 
-'''Excel database:
-see database_template.xlsx in this repository for an easy-to-edit template
-compatible with the XRD.py program'''
-def database():
-    'path to Excel database'
-    return pandas.read_excel(r'C:\Users\garci\Dropbox (UFL)\Research\XRD\database.xlsx')
-
-
-'path containing XRD files listed in Excel database'
-fpath = r'C:\Users\garci\Dropbox (UFL)\Research\XRD\_files/'
-#fpath = r'C:\Users\garci\Dropbox (Personal)\scripts\XRD\fakeXRDfiles/'
-def data(dbase,index_file):
-    '''files: .csv file NAMES'''
-
-    filename= dbase()['file'][index_file]
-
-    '''specify path'''
-    fname_path=fpath
-
-    with open( fname_path+filename , 'r') as f:
-        x = list(csv.reader(f, delimiter=","))
-
-    return np.array(x[1:], dtype=np.float)
-
 import argparse
-
 ap = argparse.ArgumentParser()
-
+ap.add_argument("-p", "--path_database_file", \
+                default = r'C:\Users\garci\DROPBO~2\scripts\XRD\database_template.xlsx',\
+                type = str, help="Path and filename of Excel database which is used\
+                to call all your files. Please update with your path and databse file name.")
+ap.add_argument("-p2", "--path_files_folder", \
+                default = r'C:\Users\garci\DROPBO~2\scripts\XRD\XRD-patterns-fake/',\
+                type = str, help="path to FOLDER containing XRD files listed in Excel database'")
 ap.add_argument("-d", "--see_database", default = False,
                 help="see database only ")
 ap.add_argument("-ka", "--K_alpha_wavelength", default = 0.154, type = float,
@@ -64,6 +45,28 @@ ap.add_argument("-r", "--Scherrer_range", default = -1, nargs = '+', type =float
 ap.add_argument("-K", "--shape_factor_K", default = 0.9, type = float,
                 help = "for Scherrer length calculation; shape factor 'K'")
 args = vars(ap.parse_args())
+
+
+'''Excel database:
+see database_template.xlsx in this repository for an easy-to-edit template
+compatible with the XRD.py program'''
+def database():
+    'path to Excel database'
+    return pandas.read_excel(args["path_database_file"])
+
+
+def data(dbase,index_file):
+    '''files: .csv file NAMES'''
+
+    filename= dbase()['file'][index_file]
+
+    '''specify path'''
+    fname_path=args["path_files_folder"]
+
+    with open( fname_path+filename , 'r') as f:
+        x = list(csv.reader(f, delimiter=","))
+
+    return np.array(x[1:], dtype=np.float)
 
 
 def make(dbase):
@@ -189,7 +192,7 @@ def make(dbase):
                 Sch,xseg,yseg = schw_peakcal(rx,ryb,args["shape_factor_K"],\
                                              args["K_alpha_wavelength"],[ls,hs])
 
-                print('\nSCHERRER WIDTH: {} nm'.format(Sch))
+                print('\nSCHERRER WIDTH: {} nm\n\n'.format(Sch))
 
             if args["units"] == 'braggs':
                 axarr[ix].plot(braggs(rx),ryb,label=labels[i]) 
@@ -268,7 +271,7 @@ def make_s(dbase):
                 Sch,xseg,yseg = schw_peakcal(rx,ryb,args["shape_factor_K"],\
                                              args["K_alpha_wavelength"],[ls,hs])
 
-                print('\nSCHERRER WIDTH: {} nm'.format(Sch))
+                print('\nSCHERRER WIDTH: {} nm\n\n'.format(Sch))
 
             if args["units"] == 'braggs':
                 axarr[ix].plot(braggs(rx),ryb,label=labels[i]) 

@@ -18,7 +18,7 @@ import argparse
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--path", \
-                default = r'C:\Users\garci\Dropbox (Personal)\scripts\XRD\XRD-patterns-fake/',\
+                default = r'C:\Users\garci\DROPBO~2\scripts\XRD\XRD-patterns-fake/',\
                 type = str, help="path where all your csv files may be. \
                 Please update the default with your common folder.")
 ap.add_argument("-s", "--file_name",\
