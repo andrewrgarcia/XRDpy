@@ -134,9 +134,9 @@ def schw_peakcal(x,y,K,lambdaKa,xrange=[12,13]):
     ysegfit = funcgauss(np.array(xseg),y0,a,mean,sigma)
     
     'FULL WIDTH AT HALF MAXIMUM'
-    FWHM = sigma*2*np.sqrt(2*np.log(2))
-    FWHM = FWHM*np.pi/180
-    print('FWHM == sigma*2*sqrt(2*ln(2)): {}'.format(FWHM))
+    FWHM_deg = sigma*2*np.sqrt(2*np.log(2))
+    FWHM = FWHM_deg*np.pi/180
+    print('\nFWHM == sigma*2*sqrt(2*ln(2)): {} degrees'.format(FWHM_deg))
 
     'scherrer width peak calculations'
     max_twotheta = xseg[list(yseg).index(max(yseg))]

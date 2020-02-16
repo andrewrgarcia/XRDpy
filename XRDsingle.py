@@ -35,7 +35,8 @@ ap.add_argument("-kb", "--K_beta_wavelength", default = 0.139, type = float,
 ap.add_argument("-b", "--background_sub", default = True,
                 help="background subtraction")
 ap.add_argument("-xl", "--toexcel", default = False, type=bool,
-                help="make an Excel copy of background subtracted pattern")
+                help="make an Excel copy of treated XRD pattern (background subtraction OR\
+                back. subtraction and 2ry emission peaks subtraction")
                 
 ap.add_argument("-r", "--Scherrer_range", default = -1, nargs = '+', type =float,
                 help="x axis units (type angle OR braggs)")
@@ -103,6 +104,7 @@ def make0():
                        ybi_t[list(xi).index(xi_lm[k])+k2]= 0
                        k2+=1
                 k+=1
+        
                 
         'Plot #2'
         plt.figure()
@@ -154,7 +156,10 @@ def make0():
 #        plt.legend(loc='best')
 
     if args["toexcel"] is True:
-        excel(xi,ybi)
+        if args["second_emission"] is True:
+            excel(xi,ybi_t)
+        else: 
+            excel(xi,ybi)
     
     plt.show()
         
