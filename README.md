@@ -54,11 +54,3 @@ Scherrer equation [displayed on shell].
 <img src="figures/XRDsingle_Figure_1.png" alt="drawing" width="350"/>
 
 - [x] Creates *.csv* file of background-subtracted version of XRD data. .csv files can be opened and edited in Excel (if Excel is your thing)
-
-## indexing.py
-
-- [x] Interplanar spacing calculation by Braggs' law
-
-- [ ] Determination of hkl indices and lattice parameters for powder patterns
-
-- [ ]  ~~If your a b c lattice parameters are known, can be used to find the Miller indices of your XRD data at a certain 2-theta peak [HARD]~~
