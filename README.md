@@ -17,7 +17,7 @@
    limitations under the License.
 
 ## Just starting? Learn how to use XRDpy [Instructional Youtube video and PDF manual coming soon]
-<a href="https://github.com/andrewrgarcia/xRD/blob/master/howto.ipynb"><img src="figures/jupyter.png" alt="drawing" width="100"/></a>
+<img src="figures/ancient-legend-icon-01.png" alt="drawing" width="200"/>
 <img src="figures/yt_logo.png" alt="drawing" width="400"/>
 
 ## XRD.py [and XRD_functions.py]
