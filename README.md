@@ -16,9 +16,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-## Just starting? Learn how to use XRDpy [Instructional Youtube video and PDF manual coming soon]
-<img src="figures/ancient-legend-icon-01.png" alt="drawing" width="200"/>
-<img src="figures/yt_logo.png" alt="drawing" width="400"/>
+## Just starting? Learn how to use XRDpy [PDF manual coming soon]
+<a href="manual.pdf"><img src="figures/ancient-legend-icon-01.png" alt="drawing" width="200"/>
+<img src="figures/yt_logo.png" alt="drawing" width="400"/></a>
 
 ## XRD.py [and XRD_functions.py]
 XRD.py integrates the XRD_functions.py script. Capabilities:
