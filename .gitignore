@@ -28,7 +28,8 @@ XRD_database_template_old.py
 
 
 
-
+#odt files
+*.odt
 
 *.xrdml
 *.xy

@@ -4,6 +4,9 @@ Created on Wed Mar 21 21:00:03 2018
 
 @author: garci
 """
+'''XRDpy - A module for X-Ray Diffraction (XRD) pattern analysis
+Andrew Garcia, 2018
+Last edit: 02/18/2020'''
 
 import csv
 import numpy as np
