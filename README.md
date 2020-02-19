@@ -18,7 +18,7 @@
 
 ## Just starting? Learn how to use XRDpy [Instructional Youtube video and PDF manual coming soon]
 <a href="https://github.com/andrewrgarcia/xRD/blob/master/howto.ipynb"><img src="figures/jupyter.png" alt="drawing" width="100"/></a>
-<img src="figures/yt_logo.png" alt="drawing" width="600"/>
+<img src="figures/yt_logo.png" alt="drawing" width="400"/>
 
 ## XRD.py [and XRD_functions.py]
 XRD.py integrates the XRD_functions.py script. Capabilities:
