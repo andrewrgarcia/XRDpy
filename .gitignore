@@ -16,8 +16,8 @@ indexing_old.py
 indexing.py
 
 # legacy / confidential
-xrda.py
-xrdsingla.py
+XRDa.py
+XRDsingla.py
 randXRD.py
 lattice_mismatch.py
 untitled1.py
