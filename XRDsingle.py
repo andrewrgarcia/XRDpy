@@ -56,13 +56,13 @@ def data( path ):
 
     return Xc, np.shape(Xc)
 
-'EXCEL'
-import xlwings as xw
+# 'EXCEL'
+# import xlwings as xw
 
-def excel(x,y):
-    wb=xw.Book()
-    xw.Range((1,1)).options(transpose=True).value=x
-    xw.Range((1,2)).options(transpose=True).value=y
+# def excel(x,y):
+#     wb=xw.Book()
+#     xw.Range((1,1)).options(transpose=True).value=x
+#     xw.Range((1,2)).options(transpose=True).value=y
 
 def make0():
     
