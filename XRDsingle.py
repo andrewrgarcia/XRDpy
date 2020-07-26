@@ -16,18 +16,16 @@ from scipy.signal import argrelextrema
 
 from XRD_functions import *
 
-
 import argparse
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--path", \
-                default = r'C:\Users\garci\DROPBO~2\scripts\XRD\XRD-patterns-fake/',\
+                default = '/home/andrew/scripts/XRDpy/XRD-patterns-fake/',\
                 type = str, help="path where all your csv files may be. \
                 Please update the default with your common folder.")
 ap.add_argument("-s", "--file_name",\
                 default = 'sample1.csv', type = str, help = "your file's name \
                 located in the defined path")
-
 ap.add_argument("-ka", "--K_alpha_wavelength", default = 0.154, type = float,
                 help = "wavelength of K-alpha radiation default Cu-Ka (nm)")
 ap.add_argument("-se", "--second_emission", default = False, type = bool,

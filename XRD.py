@@ -16,15 +16,14 @@ from matplotlib.font_manager import FontProperties
 from XRD_functions import *
 
 import pandas
-
 import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--path_database_file", \
-                default = r'C:\Users\garci\DROPBO~2\scripts\XRD\database_template.xlsx',\
+                default = '/home/andrew/XRD/database-template.xlsx',\
                 type = str, help="Path and filename of Excel database which is used\
                 to call all your files. Please update with your path and databse file name.")
 ap.add_argument("-p2", "--path_files_folder", \
-                default = r'C:\Users\garci\DROPBO~2\scripts\XRD\XRD-patterns-fake/',\
+                default = '/home/andrew/scripts/XRDpy/XRD-patterns-fake/',\
                 type = str, help="path to FOLDER containing XRD files listed in Excel database'")
 ap.add_argument("-d", "--see_database", default = False,
                 help="see database only ")
