@@ -8,7 +8,6 @@ respectively.
 
 ## Just starting? Learn how to use XRDpy 
 <a href="manual.pdf"><img src="figures/ancient-legend-icon-01.png" alt="drawing" width="200"/></a>
-<a href="https://youtu.be/noYSBvC1IUQ"><img src="figures/yt_logo.png" alt="drawing" width="400"/></a>
 
 #### (LICENSE file excerpt -see: LICENSE file in this repository-)
 
