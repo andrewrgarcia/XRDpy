@@ -6,7 +6,7 @@ in an easy way. It is currently divided into 2 main scripts, XRDsingle.py and XR
 plot and calculate the Scherrer width for a single XRD and multiple XRD pattterns at a time,
 respectively.
 
-## Just starting? Learn how to use XRDpy 
+## Just starting? Learn how to use XRDpy (Click on book below for Manual and Download it for clickable links)
 <a href="manual.pdf"><img src="figures/ancient-legend-icon-01.png" alt="drawing" width="200"/></a>
 
 #### (LICENSE file excerpt -see: LICENSE file in this repository-)
