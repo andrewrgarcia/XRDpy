@@ -1,5 +1,5 @@
 # X-Ray Diffraction (XRD) analysis with Python
-## Andrew Garcia, 2018
+## est. 2018, Andrew Garcia
 
 XRDpy is in layman terms, an XRD pattern plotting program which calculates crystallite size
 in an easy way. It is currently divided into 2 main scripts, XRDsingle.py and XRD.py, which
@@ -8,7 +8,7 @@ respectively.
 
 ## Just starting? Learn how to use XRDpy 
 <a href="manual.pdf"><img src="figures/ancient-legend-icon-01.png" alt="drawing" width="200"/></a>
-<a href="https://youtu.be/noYSBvC1IUQ"><img src="figures/yt_logo.png" alt="drawing" width="400"/></a>
+
 
 #### (LICENSE file excerpt -see: LICENSE file in this repository-)
 
