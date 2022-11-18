@@ -1,0 +1,33 @@
+\contentsline {section}{What is XRDpy?}{3}{section*.2}%
+\contentsline {section}{Compatibility}{5}{section*.3}%
+\contentsline {section}{How do I start using it?}{6}{section*.4}%
+\contentsline {subsection}{Clone the repository}{6}{section*.5}%
+\contentsline {subsection}{Run a simple command in the Terminal}{6}{section*.6}%
+\contentsline {subsection}{Make your database file}{7}{section*.7}%
+\contentsline {subsection}{Set your common XRD file directories}{7}{section*.8}%
+\contentsline {subsection}{Run XRDpy Example No. 1}{8}{section*.9}%
+\contentsline {subsection}{Run XRDpy Example No. 2}{10}{section*.10}%
+\contentsline {section}{XRD.py arguments}{11}{section*.11}%
+\contentsline {subsection}{-h, --help}{11}{section*.12}%
+\contentsline {subsection}{-p, --path\_database\_file}{11}{section*.13}%
+\contentsline {subsection}{-p2, --path\_files\_folder}{11}{section*.14}%
+\contentsline {subsection}{-d --see\_database}{11}{section*.15}%
+\contentsline {subsection}{-ka, --K\_alpha\_wavelength}{11}{section*.16}%
+\contentsline {subsection}{-b, --background\_sub}{12}{section*.17}%
+\contentsline {subsection}{-o, --overlaid}{12}{section*.18}%
+\contentsline {subsection}{-x, --overlaid\_split}{12}{section*.19}%
+\contentsline {subsection}{-s, --single}{12}{section*.20}%
+\contentsline {subsection}{-u, --units}{12}{section*.21}%
+\contentsline {subsection}{-r, --Scherrer\_range}{12}{section*.22}%
+\contentsline {subsection}{-K, --shape\_factor\_K}{12}{section*.23}%
+\contentsline {section}{XRDsingle.py arguments}{13}{section*.24}%
+\contentsline {subsection}{-h, --help}{13}{section*.25}%
+\contentsline {subsection}{-p, --path}{13}{section*.26}%
+\contentsline {subsection}{-s, --file\_name}{13}{section*.27}%
+\contentsline {subsection}{-ka, --K\_alpha\_wavelength}{13}{section*.28}%
+\contentsline {subsection}{-se, --second\_emission}{13}{section*.29}%
+\contentsline {subsection}{-kb, --K\_beta\_wavelength}{13}{section*.30}%
+\contentsline {subsection}{-b, --background\_sub}{13}{section*.31}%
+\contentsline {subsection}{-xl, --toexcel}{14}{section*.32}%
+\contentsline {subsection}{-r, --Scherrer\_range}{14}{section*.33}%
+\contentsline {subsection}{-K, --shape\_factor\_K}{14}{section*.34}%

@@ -1,3 +1,8 @@
+# ANNOUNCEMENT : This project may become deprecated soon
+
+This project may become deprecated soon. It is being shifted towards a user-friendly Python package on the PyPI repository called [**powerxrd**](https://github.com/andrewrgarcia/powerxrd), which may be setup with the `pip install powerxrd` command.
+
+
 # X-Ray Diffraction (XRD) analysis with Python
 ## Andrew Garcia, 2018
 
@@ -7,7 +12,7 @@ plot and calculate the Scherrer width for a single XRD and multiple XRD patttern
 respectively.
 
 ## Just starting? Learn how to use XRDpy (Click on book below for Manual and Download it for clickable links)
-<a href="manual.pdf"><img src="figures/ancient-legend-icon-01.png" alt="drawing" width="200"/></a>
+<a href="XRDpy-Manual/manual.pdf"><img src="figures/ancient-legend-icon-01.png" alt="drawing" width="200"/></a>
 
 #### (LICENSE file excerpt -see: LICENSE file in this repository-)
 

@@ -1,0 +1,33 @@
+\BOOKMARK [1][-]{section*.2}{What is XRDpy?}{}% 1
+\BOOKMARK [1][-]{section*.3}{Compatibility}{}% 2
+\BOOKMARK [1][-]{section*.4}{How do I start using it?}{}% 3
+\BOOKMARK [2][-]{section*.5}{Clone the repository}{section*.4}% 4
+\BOOKMARK [2][-]{section*.6}{Run a simple command in the Terminal}{section*.4}% 5
+\BOOKMARK [2][-]{section*.7}{Make your database file}{section*.4}% 6
+\BOOKMARK [2][-]{section*.8}{Set your common XRD file directories}{section*.4}% 7
+\BOOKMARK [2][-]{section*.9}{Run XRDpy Example No. 1}{section*.4}% 8
+\BOOKMARK [2][-]{section*.10}{Run XRDpy Example No. 2}{section*.4}% 9
+\BOOKMARK [1][-]{section*.11}{XRD.py arguments}{}% 10
+\BOOKMARK [2][-]{section*.12}{-h, \205help}{section*.11}% 11
+\BOOKMARK [2][-]{section*.13}{-p, \205path\137database\137file}{section*.11}% 12
+\BOOKMARK [2][-]{section*.14}{-p2, \205path\137files\137folder}{section*.11}% 13
+\BOOKMARK [2][-]{section*.15}{-d \205see\137database}{section*.11}% 14
+\BOOKMARK [2][-]{section*.16}{-ka, \205K\137alpha\137wavelength}{section*.11}% 15
+\BOOKMARK [2][-]{section*.17}{-b, \205background\137sub}{section*.11}% 16
+\BOOKMARK [2][-]{section*.18}{-o, \205overlaid}{section*.11}% 17
+\BOOKMARK [2][-]{section*.19}{-x, \205overlaid\137split}{section*.11}% 18
+\BOOKMARK [2][-]{section*.20}{-s, \205single}{section*.11}% 19
+\BOOKMARK [2][-]{section*.21}{-u, \205units}{section*.11}% 20
+\BOOKMARK [2][-]{section*.22}{-r, \205Scherrer\137range}{section*.11}% 21
+\BOOKMARK [2][-]{section*.23}{-K, \205shape\137factor\137K}{section*.11}% 22
+\BOOKMARK [1][-]{section*.24}{XRDsingle.py arguments}{}% 23
+\BOOKMARK [2][-]{section*.25}{-h, \205help}{section*.24}% 24
+\BOOKMARK [2][-]{section*.26}{-p, \205path}{section*.24}% 25
+\BOOKMARK [2][-]{section*.27}{-s, \205file\137name}{section*.24}% 26
+\BOOKMARK [2][-]{section*.28}{-ka, \205K\137alpha\137wavelength}{section*.24}% 27
+\BOOKMARK [2][-]{section*.29}{-se, \205second\137emission}{section*.24}% 28
+\BOOKMARK [2][-]{section*.30}{-kb, \205K\137beta\137wavelength}{section*.24}% 29
+\BOOKMARK [2][-]{section*.31}{-b, \205background\137sub}{section*.24}% 30
+\BOOKMARK [2][-]{section*.32}{-xl, \205toexcel}{section*.24}% 31
+\BOOKMARK [2][-]{section*.33}{-r, \205Scherrer\137range}{section*.24}% 32
+\BOOKMARK [2][-]{section*.34}{-K, \205shape\137factor\137K}{section*.24}% 33
