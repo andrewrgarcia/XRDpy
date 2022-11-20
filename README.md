@@ -1,4 +1,4 @@
-# ANNOUNCEMENT : This project has become deprecated. Please re-direct to the more functional and easy-to-use [**powerxrd**](https://github.com/andrewrgarcia/powerxrd) Python package
+# ANNOUNCEMENT : This project has become deprecated. Please re-direct to the more functional and easy-to-use [**powerxrd**(https://github.com/andrewrgarcia/powerxrd) Python package]
 
 
 # X-Ray Diffraction (XRD) analysis with Python
