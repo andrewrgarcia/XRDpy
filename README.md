@@ -1,8 +1,5 @@
 # ANNOUNCEMENT : This project has become deprecated. Please re-direct to the more functional and easy-to-use [**powerxrd**](https://github.com/andrewrgarcia/powerxrd) Python package
 
-## Installation of [**powerxrd**](https://github.com/andrewrgarcia/powerxrd) 
-`pip install powerxrd` command.
-
 
 # X-Ray Diffraction (XRD) analysis with Python
 ## Andrew Garcia, 2018
