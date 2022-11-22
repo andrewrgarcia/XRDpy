@@ -1,5 +1,7 @@
 # ANNOUNCEMENT : This project has become deprecated. Please re-direct to the more functional and easy-to-use [**powerxrd** Python package](https://github.com/andrewrgarcia/powerxrd)
 
+<a href="https://colab.research.google.com/drive/1_Eq-cW6LSPPnaRjkbeHaC81Wfbd8mQS-?usp=sharing">
+<img src="https://github.com/andrewrgarcia/powerxrd/blob/main/img/colab.png?raw=true" width="300" ></a>
 
 # X-Ray Diffraction (XRD) analysis with Python
 ## Andrew Garcia, 2018
